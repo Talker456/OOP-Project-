@@ -3,7 +3,7 @@ package trashcan;
 import javax.swing.*;
 import java.awt.*;
 
-public class GBB extends JPanel {
+public class FullBoard extends JPanel {
     GridBagConstraints gbc = new GridBagConstraints();
     GridBagLayout grid = new GridBagLayout();
 
@@ -41,7 +41,7 @@ public class GBB extends JPanel {
                 "1000000001",
                 "1111111111",
         };
-        RealBoardGBB testBoard = new RealBoardGBB();
+        Board testBoard = new Board();
         testBoard.init(img);
 
         JPanel topRight = new JPanel();
@@ -60,10 +60,10 @@ public class GBB extends JPanel {
         topLeft.setBackground(Color.black);
         topLeft.setPreferredSize(new Dimension(1,1));
 
-        ColumnDesc cd = new ColumnDesc();
+        ColumnDescription cd = new ColumnDescription();
         cd.init((int)Math.round(DIFFICULTY_WEIGHT/2.0),DIFFICULTY_WEIGHT,img); //MOD
 
-        RowDesc rd = new RowDesc();
+        RowDescription rd = new RowDescription();
         rd.init((int)Math.round(DIFFICULTY_WEIGHT/2.0),DIFFICULTY_WEIGHT,img); //MOD
 
         make(topLeft,0,0,1,1,1.0,1.0);

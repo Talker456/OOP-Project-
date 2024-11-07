@@ -5,32 +5,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ColumnDesc extends JPanel{
+public class ColumnDescription extends JPanel{
 
-//    void init(int rows,int cols,String[] img) {
-//        setLayout(new GridLayout(cols, rows));
-//
-//
-//        for (int i = 0; i < cols; i++) {
-//            String[] split = img[i].split(" ");
-//
-//            for (int j = 0; j < split.length; j++) {
-//                split[j] = split[j].length()+"";
-//            }
-//
-//            System.out.println(Arrays.toString(split));
-//            for (int j = rows-1; j >= 0; j--) {
-//                JPanel tmp = new JPanel();
-//                tmp.setBorder(BorderFactory.createEmptyBorder());
-//                tmp.setBackground(Color.white);
-//
-//                JLabel tmpLabel = new JLabel();
-//                tmpLabel.setText(split.length<=j?"":split[j]);
-//                tmp.add(tmpLabel);
-//                this.add(tmp);
-//            }
-//        }
-//    }
     void init(int rows,int cols,String[] img) {
         setLayout(new GridLayout(cols, 1));
 
@@ -60,8 +36,8 @@ public class ColumnDesc extends JPanel{
                 JLabel tmpLabel = new JLabel();
                 String string = array.length <= j ? "" : array[j];
                 tmpLabel.setText(string);
-                tmpLabel.setText("<html><p style='line-height:200%'>"+string+"</p></html>");
                 tmpLabel.setFont(tmpLabel.getFont().deriveFont(10.0f));
+                tmpLabel.setVerticalTextPosition(SwingConstants.CENTER);
 
                 tmp.add(tmpLabel);
                 row.add(tmp);
