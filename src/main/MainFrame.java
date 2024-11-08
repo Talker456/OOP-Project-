@@ -1,4 +1,4 @@
-package trashcan;
+package main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -67,7 +67,7 @@ public class MainFrame extends JFrame {
         FullBoard g = new FullBoard();
 
 
-        g.init(ex2);
+        g.init(ex);
 
         JPanel north = new JPanel();
         north.setPreferredSize(new Dimension(WIDTH,50));
