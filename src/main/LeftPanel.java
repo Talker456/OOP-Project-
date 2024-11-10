@@ -12,7 +12,6 @@ public class LeftPanel extends JPanel implements ActionListener {
     //html><p style='font-size:15px;'>Hint<br>3/3</p></html>
     static int hintLeft = 3;
 
-    JLabel timerLabel = new JLabel("Timer : ?");
     JButton modButton = new JButton("O");
     JButton hintButton = new JButton(setHintButtonText());
 
@@ -22,17 +21,13 @@ public class LeftPanel extends JPanel implements ActionListener {
         this.setLayout(new GridLayout(3, 1));
         this.setPreferredSize(new Dimension(200,700));
 
-        JLabel topLabel = new JLabel("miss : ");
+        JLabel topLabel = new JLabel("user : ");
         topLabel.setHorizontalAlignment(SwingConstants.CENTER);
         topLabel.setFont(topLabel.getFont().deriveFont(24.0f));
-
-//        timerLabel.setFont(timerLabel.getFont().deriveFont(24.0f));
-//        timerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         JPanel bottomPanel = new JPanel(new GridLayout(1, 2));
 
         modButton.addActionListener(this);
-        hintButton.addActionListener(this);
 
         bottomPanel.add(modButton);
         bottomPanel.add(hintButton);
@@ -52,9 +47,6 @@ public class LeftPanel extends JPanel implements ActionListener {
         }else if(source.getText().equals("X")){
             source.setText("O");
             Board.setState(true);
-        }else if(source.equals(hintButton)){
-            hintUse();
-            Board.hintCall();
         }
     }
 
@@ -62,14 +54,20 @@ public class LeftPanel extends JPanel implements ActionListener {
         return "<html><p style='font-size:15px;'>Hint<br>"+hintLeft+"/3</p></html>";
     }
 
+    public boolean isHintLeft() {
+        return hintLeft > 0;
+    }
+
     public void hintUse() {
-        if (hintLeft > 0) {
-            hintLeft--;
-            hintButton.setText(setHintButtonText());
-        }
+        hintLeft--;
+        hintButton.setText(setHintButtonText());
     }
 
     public static int getHintLeft() {
         return hintLeft;
+    }
+
+    public void setEventHandler(ActionListener actionListener) {
+        hintButton.addActionListener(actionListener);
     }
 }

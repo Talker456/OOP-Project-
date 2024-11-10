@@ -9,6 +9,7 @@ public class FullBoard extends JPanel {
 
     static int DIFFICULTY_WEIGHT; // MOD
     static double RATIO;
+    Board testBoard;
 
 
     void init(String[] img) {
@@ -21,7 +22,7 @@ public class FullBoard extends JPanel {
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
 
-        Board testBoard = new Board();
+        testBoard = new Board();
         testBoard.init(img);
 
         JPanel bottomRight = new JPanel();

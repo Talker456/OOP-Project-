@@ -2,9 +2,11 @@ package main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Arrays;
 
-public class GamePanel extends JPanel{
+public class GamePanel extends JPanel implements ActionListener {
 
     LeftPanel left = new LeftPanel();
     FullBoard fullBoard = new FullBoard();
@@ -18,6 +20,7 @@ public class GamePanel extends JPanel{
         setLayout(new BorderLayout());
 
         left.init();
+        left.setEventHandler(this);
         fullBoard.init(stage);
 
         JPanel north = new JPanel();
@@ -34,4 +37,15 @@ public class GamePanel extends JPanel{
         this.add(south, BorderLayout.PAGE_END);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton source = (JButton) e.getSource();
+
+        if (source.equals(left.hintButton)) {
+            if (left.isHintLeft()) {
+                left.hintUse();
+                fullBoard.testBoard.hintCall();
+            }
+        }
+    }
 }

@@ -114,17 +114,22 @@ public class Board extends JPanel implements ActionListener {
         System.out.println(record);
     }
 
-    public static void hintCall() {
+    public void hintCall() {
         Random r = new Random();
         int x,y;
 
         do {
             x = r.nextInt(rowSize);
             y = r.nextInt(colSize);
-            System.out.println("dfsf");
-        } while (currentState[x][y] != '0');
+        } while (currentState[x][y] == '1' || !cellPanel[x][y].isCell );
+
+        System.out.println("x = " + x);
+        System.out.println("y = " + y);
 
         cellPanel[x][y].setBackground(Color.darkGray);
         currentState[x][y] = '1';
+        if (checkCleared()) {
+            terminate();
+        }
     }
 }
