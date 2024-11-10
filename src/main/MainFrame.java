@@ -7,26 +7,9 @@ public class MainFrame extends JFrame {
     private static final long serialVersionUID = 1L;
     static JLabel timerLabel;
 
+    GamePanel gamePanel=new GamePanel();
+
     public void setupMainPanel() {
-        JPanel top = new JPanel(new GridLayout(3, 1));
-        setTitle("Demo");
-
-        Container pane = getContentPane();
-
-        top.setPreferredSize(new Dimension(200, 1));
-        JLabel topLabel = new JLabel("Title");
-        topLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        topLabel.setFont(topLabel.getFont().deriveFont(24.0f));
-
-        timerLabel = new JLabel("\tTimer : ?");
-        timerLabel.setFont(timerLabel.getFont().deriveFont(24.0f));
-        timerLabel.setHorizontalAlignment(SwingConstants.CENTER);
-
-        top.add(timerLabel, BorderLayout.CENTER);
-        top.add(topLabel, BorderLayout.CENTER);
-
-        pane.add(top, BorderLayout.LINE_START);
-
         String[] ex = {
                 "11111",
                 "10001",
@@ -64,23 +47,11 @@ public class MainFrame extends JFrame {
                 "000000000000000",
         };
 
-        FullBoard g = new FullBoard();
+        setTitle("Demo");
+        Container pane = getContentPane();
 
-
-        g.init(ex);
-
-        JPanel north = new JPanel();
-        north.setPreferredSize(new Dimension(WIDTH,50));
-        JPanel right = new JPanel();
-        right.setPreferredSize(new Dimension(50,HEIGHT));
-        JPanel south = new JPanel();
-        south.setPreferredSize(new Dimension(WIDTH,50));
-
-        pane.add(north, BorderLayout.PAGE_START);
-        pane.add(g,BorderLayout.CENTER);
-        pane.add(right, BorderLayout.LINE_END);
-        pane.add(south, BorderLayout.PAGE_END);
-
+        gamePanel.init(ex);
+        pane.add(gamePanel);
     }
 
     private void createAndShowGUI() {
