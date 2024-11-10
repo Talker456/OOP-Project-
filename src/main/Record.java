@@ -15,6 +15,6 @@ public class Record {
 
     @Override
     public String toString() {
-        return "Record [username=" + username + ", difficulty=" + difficulty + ", time]";
+        return "Record [username=" + username + ", difficulty=" + difficulty + ", time="+time+", hintUsed=" + hintUsed;
     }
 }

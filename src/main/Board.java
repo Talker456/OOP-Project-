@@ -108,10 +108,7 @@ public class Board extends JPanel implements ActionListener {
     }
 
     public void terminate() {
-        System.out.println("terminated");
-        int hintUsed = 3 - LeftPanel.getHintLeft();
-        Record record = new Record("name", "diff", "time", hintUsed);
-        System.out.println(record);
+        GamePanel.terminate();
     }
 
     public void hintCall() {
@@ -122,9 +119,6 @@ public class Board extends JPanel implements ActionListener {
             x = r.nextInt(rowSize);
             y = r.nextInt(colSize);
         } while (currentState[x][y] == '1' || !cellPanel[x][y].isCell );
-
-        System.out.println("x = " + x);
-        System.out.println("y = " + y);
 
         cellPanel[x][y].setBackground(Color.darkGray);
         currentState[x][y] = '1';

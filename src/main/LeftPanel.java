@@ -15,7 +15,7 @@ public class LeftPanel extends JPanel implements ActionListener {
     JButton modButton = new JButton("O");
     JButton hintButton = new JButton(setHintButtonText());
 
-    ClockComponent clock = new ClockComponent();
+    static ClockComponent clock = new ClockComponent();
 
     public void init() {
         this.setLayout(new GridLayout(3, 1));
@@ -65,6 +65,10 @@ public class LeftPanel extends JPanel implements ActionListener {
 
     public static int getHintLeft() {
         return hintLeft;
+    }
+
+    public static String getTime() {
+        return ClockComponent.t.toString();
     }
 
     public void setEventHandler(ActionListener actionListener) {

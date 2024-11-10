@@ -11,6 +11,7 @@ public class GamePanel extends JPanel implements ActionListener {
     LeftPanel left = new LeftPanel();
     FullBoard fullBoard = new FullBoard();
 
+
     public void init(String[] stage) {
 
         for (String string : stage) {
@@ -47,5 +48,13 @@ public class GamePanel extends JPanel implements ActionListener {
                 fullBoard.testBoard.hintCall();
             }
         }
+    }
+
+    public static void terminate() {
+        System.out.println("terminated");
+        int hintUsed = 3 - LeftPanel.getHintLeft();
+        String timeSpent = LeftPanel.getTime();
+        Record record = new Record("name", "diff", timeSpent, hintUsed);
+        System.out.println(record);
     }
 }
