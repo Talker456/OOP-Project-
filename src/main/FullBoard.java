@@ -1,5 +1,7 @@
 package main;
 
+import main.stage.Stage;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,10 +12,11 @@ public class FullBoard extends JPanel {
     static int DIFFICULTY_WEIGHT; // MOD
     static double RATIO;
     Board testBoard;
+    static Stage currentStage;
 
-
-    void init(String[] img) {
-        DIFFICULTY_WEIGHT = img.length;
+    void init(Stage stage) {
+        currentStage = stage;
+        DIFFICULTY_WEIGHT = currentStage.getImage().length;
         RATIO = (double) DIFFICULTY_WEIGHT / (Math.round(DIFFICULTY_WEIGHT/2.0));
 
         setLayout(grid);
@@ -23,7 +26,7 @@ public class FullBoard extends JPanel {
         gbc.weighty = 1.0;
 
         testBoard = new Board();
-        testBoard.init(img);
+        testBoard.init(currentStage.getImage());
 
         JPanel bottomRight = new JPanel();
         bottomRight.setBackground(Color.gray);
@@ -34,10 +37,10 @@ public class FullBoard extends JPanel {
         topLeft.setPreferredSize(new Dimension(1,1));
 
         ColumnDescription cd = new ColumnDescription();
-        cd.init((int)Math.round(DIFFICULTY_WEIGHT/2.0),DIFFICULTY_WEIGHT,img); //MOD
+        cd.init((int)Math.round(DIFFICULTY_WEIGHT/2.0),DIFFICULTY_WEIGHT,currentStage.getImage()); //MOD
 
         RowDescription rd = new RowDescription();
-        rd.init((int)Math.round(DIFFICULTY_WEIGHT/2.0),DIFFICULTY_WEIGHT,img); //MOD
+        rd.init((int)Math.round(DIFFICULTY_WEIGHT/2.0),DIFFICULTY_WEIGHT,currentStage.getImage()); //MOD
 
         make(topLeft,0,0,1,1,1.0,1.0);
 

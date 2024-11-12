@@ -1,9 +1,12 @@
 package main;
 
+import main.stage.Stage;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 
 public class GamePanel extends JPanel implements ActionListener {
@@ -11,10 +14,9 @@ public class GamePanel extends JPanel implements ActionListener {
     LeftPanel left = new LeftPanel();
     FullBoard fullBoard = new FullBoard();
 
+    public void init(Stage stage) {
 
-    public void init(String[] stage) {
-
-        for (String string : stage) {
+        for (String string : stage.getImage()) {
             System.out.println(string);
         }
 
@@ -50,11 +52,12 @@ public class GamePanel extends JPanel implements ActionListener {
         }
     }
 
-    public static void terminate() {
+    public static void terminate(){
         System.out.println("terminated");
         int hintUsed = 3 - LeftPanel.getHintLeft();
         String timeSpent = LeftPanel.getTime();
-        Record record = new Record("name", "diff", timeSpent, hintUsed);
+        String difficulty = FullBoard.currentStage.getDifficulty();
+        Record record = new Record("name", difficulty, timeSpent, hintUsed);
         System.out.println(record);
     }
 }

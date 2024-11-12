@@ -1,56 +1,59 @@
 package main;
 
+import main.stage.EasyStage;
+import main.stage.HardStage;
+import main.stage.NormalStage;
+import main.stage.Stage;
+
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MainFrame extends JFrame {
     private static final long serialVersionUID = 1L;
-    static JLabel timerLabel;
 
     GamePanel gamePanel=new GamePanel();
 
+    ArrayList<Stage> stages = new ArrayList<>();
+    Scanner keyScanner = new Scanner(System.in);
+
+    public void readAllStages(String path) {
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(new File(path));
+        } catch (FileNotFoundException e) {
+            System.out.println("not found " + path);
+        }
+
+        Stage stage = null;
+        while (scanner.hasNext()) {
+            int diff = scanner.nextInt();
+            switch (diff) {
+                case 1:
+                    stage = new EasyStage();
+                    break;
+                case 2:
+                    stage = new NormalStage();
+                    break;
+                case 3:
+                    stage = new HardStage();
+                    break;
+            }
+            stage.read(scanner);
+            stages.add(stage);
+        }
+    }
+
     public void setupMainPanel() {
-        String[] ex = {
-                "11111",
-                "10001",
-                "10101",
-                "10001",
-                "11111"
-        };
-        String[] ex2 = {
-                "1111111111",
-                "1010000111",
-                "1100001101",
-                "1000011001",
-                "1000110011",
-                "1001100111",
-                "1011001101",
-                "1110011001",
-                "1100110011",
-                "1111111111",
-        };
-        String[] ex3 = {
-                "000000000000000",
-                "000000000000000",
-                "000000010000000",
-                "000000101000000",
-                "000001000100000",
-                "001111000111100",
-                "001000101000100",
-                "000100101001000",
-                "000010000010000",
-                "000010000010000",
-                "000100111001000",
-                "000101000101000",
-                "000010000010000",
-                "000000000000000",
-                "000000000000000",
-        };
+        readAllStages("stage.txt");
 
         setTitle("Demo");
         Container pane = getContentPane();
 
-        gamePanel.init(ex);
+        gamePanel.init(stages.getFirst());
         pane.add(gamePanel);
     }
 

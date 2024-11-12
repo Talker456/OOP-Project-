@@ -8,17 +8,15 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Board extends JPanel implements ActionListener {
-    static int rowSize; //MOD
-    static int colSize; //MOD
+    static int size; //MOD
     static Pixel[][] cellPanel;
     static boolean state=true;
     String[] stageCopy;
     static char[][] currentState;
 
     void init(String[] img) {
-        rowSize = img.length;
-        colSize = img.length;
-        cellPanel = new Pixel[rowSize][colSize];
+        size = img.length;
+        cellPanel = new Pixel[size][size];
         stageCopy = Arrays.copyOf(img, img.length);
         currentState = new char[img.length][img.length];
 
@@ -26,10 +24,10 @@ public class Board extends JPanel implements ActionListener {
             Arrays.fill(chars, '0');
         }
 
-        setLayout(new GridLayout(rowSize, colSize));
+        setLayout(new GridLayout(size, size));
 
-        for (int i = 0; i < rowSize; i++) {
-            for (int j = 0; j < colSize; j++) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
                 cellPanel[i][j] = new Pixel(img[i].charAt(j),i,j);
                 cellPanel[i][j].setText("");
                 cellPanel[i][j].addActionListener(this);
@@ -116,8 +114,8 @@ public class Board extends JPanel implements ActionListener {
         int x,y;
 
         do {
-            x = r.nextInt(rowSize);
-            y = r.nextInt(colSize);
+            x = r.nextInt(size);
+            y = r.nextInt(size);
         } while (currentState[x][y] == '1' || !cellPanel[x][y].isCell );
 
         cellPanel[x][y].setBackground(Color.darkGray);
