@@ -107,6 +107,7 @@ public class Board extends JPanel implements ActionListener {
 
     public void terminate() {
         GamePanel.terminate();
+        MainFrame.showMain();
     }
 
     public void hintCall() {

@@ -11,14 +11,12 @@ import java.util.Arrays;
 
 public class GamePanel extends JPanel implements ActionListener {
 
-    LeftPanel left = new LeftPanel();
-    FullBoard fullBoard = new FullBoard();
+    LeftPanel left;
+    FullBoard fullBoard;
 
     public void init(Stage stage) {
-
-        for (String string : stage.getImage()) {
-            System.out.println(string);
-        }
+        left = new LeftPanel();
+        fullBoard = new FullBoard();
 
         setLayout(new BorderLayout());
 

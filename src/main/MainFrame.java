@@ -10,15 +10,18 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class MainFrame extends JFrame {
     private static final long serialVersionUID = 1L;
 
-    GamePanel gamePanel=new GamePanel();
-
     ArrayList<Stage> stages = new ArrayList<>();
-    Scanner keyScanner = new Scanner(System.in);
+
+    static CardLayout cards = new CardLayout();
+    static Container cardPanel;
+    JPanel infoPanel;
+    JPanel resultPanel;
 
     public void readAllStages(String path) {
         Scanner scanner = null;
@@ -52,9 +55,26 @@ public class MainFrame extends JFrame {
 
         setTitle("Demo");
         Container pane = getContentPane();
+        cardPanel = new JPanel(cards);
 
-        gamePanel.init(stages.getFirst());
-        pane.add(gamePanel);
+        Random r = new Random();
+        infoPanel = new JPanel();
+        JButton infoButton = new JButton("button");
+        infoButton.addActionListener(e->{
+            GamePanel gp = new GamePanel();
+            gp.init(stages.get(r.nextInt(stages.size())));
+            cardPanel.add(gp, "game");
+            cards.show(cardPanel, "game");
+        });
+        infoPanel.add(infoButton);
+
+        resultPanel = new JPanel();
+        JButton resultButton = new JButton("button");
+        resultButton.addActionListener(e->cards.show(cardPanel,"info"));
+
+
+        cardPanel.add(infoPanel, "info");
+        getContentPane().add(cardPanel);
     }
 
     private void createAndShowGUI() {
@@ -64,6 +84,11 @@ public class MainFrame extends JFrame {
         pack();
         setVisible(true);
     }
+
+    public static void showMain() {
+        cards.show(cardPanel, "info");
+    }
+
 
     public static void main(String[] args) {
         MainFrame frame = new MainFrame();

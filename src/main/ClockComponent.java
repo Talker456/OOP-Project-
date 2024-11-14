@@ -17,6 +17,7 @@ import javax.swing.Timer;
 public class ClockComponent extends JLabel {
     ClockComponent() {
         super("", SwingConstants.CENTER);
+        t = LocalTime.of(0, 0, 0);
         Timer t = new Timer(1000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 setText(getTimeString());
@@ -24,6 +25,10 @@ public class ClockComponent extends JLabel {
         });
         setFont(new Font("Sans Serif", Font.PLAIN, 24));
         t.start();
+    }
+
+    public  void clearClock() {
+        t = LocalTime.of(0, 0, 0);
     }
 
 //    String getTimeString() {
@@ -35,7 +40,7 @@ public class ClockComponent extends JLabel {
 //        return String.format("%02d:%02d:%02d", hour, minute, second);
 //    }
 
-    static LocalTime t = LocalTime.of(0, 0, 0);
+    static LocalTime t;
 
     static String getTimeString() {
         t = t.plusSeconds(1);

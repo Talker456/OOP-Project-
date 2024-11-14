@@ -12,5 +12,4 @@ public class HardStage extends Stage{
             image[i] = scanner.next();
         }
     }
-
 }

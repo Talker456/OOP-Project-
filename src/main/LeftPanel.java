@@ -13,13 +13,16 @@ public class LeftPanel extends JPanel implements ActionListener {
     static int hintLeft = 3;
 
     JButton modButton = new JButton("O");
-    JButton hintButton = new JButton(setHintButtonText());
+    JButton hintButton = new JButton();
 
     static ClockComponent clock = new ClockComponent();
 
     public void init() {
         this.setLayout(new GridLayout(3, 1));
-        this.setPreferredSize(new Dimension(200,700));
+        this.setPreferredSize(new Dimension(200, 700));
+
+        clock.clearClock();
+        clearHint();
 
         JLabel topLabel = new JLabel("user : ");
         topLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -28,6 +31,7 @@ public class LeftPanel extends JPanel implements ActionListener {
         JPanel bottomPanel = new JPanel(new GridLayout(1, 2));
 
         modButton.addActionListener(this);
+        hintButton.setText(setHintButtonText());
 
         bottomPanel.add(modButton);
         bottomPanel.add(hintButton);
@@ -73,5 +77,9 @@ public class LeftPanel extends JPanel implements ActionListener {
 
     public void setEventHandler(ActionListener actionListener) {
         hintButton.addActionListener(actionListener);
+    }
+
+    public static void clearHint() {
+        hintLeft = 3;
     }
 }
