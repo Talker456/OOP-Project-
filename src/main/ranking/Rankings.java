@@ -1,5 +1,7 @@
 package main.ranking;
 
+import main.scenes.MainScene;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -60,6 +62,14 @@ public class Rankings {
             stageButton.addActionListener(new StageButtonListener(stage));
             mainPanel.add(stageButton);
         }
+
+        JButton back = new JButton("Back");
+        back.addActionListener(e->{
+            MainScene m = new MainScene();
+            m.setVisible(true);
+            rankingFrame.dispose();
+        });
+        mainPanel.add(back);
 
         rankingFrame.add(mainPanel);
         rankingFrame.setVisible(true);

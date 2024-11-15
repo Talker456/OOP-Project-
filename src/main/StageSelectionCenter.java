@@ -12,6 +12,8 @@ public class StageSelectionCenter extends JPanel {
     StageButton[] buttons = new StageButton[GameControlFrame.stages.size()];
 
     public void setButtons() {
+
+        System.out.println("buttons = " + buttons.length);
         for (int i = 0; i < buttons.length; i++) {
             buttons[i] = new StageButton("Level"+(i+1));
         }

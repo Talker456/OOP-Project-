@@ -14,8 +14,8 @@ import java.util.*;
 public class GameControlFrame extends JFrame {
     private static final long serialVersionUID = 1L;
 
-    static ArrayList<Stage> stages = new ArrayList<>();
-    static HashMap<String, ArrayList<Record>> records = new HashMap<>();
+    static ArrayList<Stage> stages;
+    static HashMap<String, ArrayList<Record>> records;
 
     static CardLayout cards = new CardLayout();
     static Container cardPanel;
@@ -25,6 +25,9 @@ public class GameControlFrame extends JFrame {
     static String username;
 
     public void setupMainPanel() {
+        stages = new ArrayList<>();
+        records = new HashMap<>();
+
         //Temporary username
         username = "user1";
 

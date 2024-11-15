@@ -6,3 +6,4 @@ user1 Level5 Easy 00:00:05
 user1 Level6 Easy 00:00:03
 user1 Level7 Easy 00:00:04
 user1 Level8 Easy 00:00:04
+user1 Level9 Easy 00:00:04
