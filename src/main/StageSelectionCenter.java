@@ -51,7 +51,7 @@ public class StageSelectionCenter extends JPanel {
         }
 
         for (int i = 0; i < max+1; i++) {
-            if (max>=buttons.length) break;
+            if (i>=buttons.length) break;
             buttons[i].enabled = true;
             buttons[i].setBackground(new Color(169, 246, 164));
             if(i==max) buttons[i].setBackground(Color.white);
