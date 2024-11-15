@@ -1,6 +1,6 @@
 package main;
 
-import main.games.GamePanel;
+import main.scenes.MainScene;
 import main.stage.EasyStage;
 import main.stage.HardStage;
 import main.stage.NormalStage;
@@ -8,11 +8,10 @@ import main.stage.Stage;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.*;
 
-public class MainFrame extends JFrame {
+public class GameControlFrame extends JFrame {
     private static final long serialVersionUID = 1L;
 
     static ArrayList<Stage> stages = new ArrayList<>();
@@ -21,11 +20,7 @@ public class MainFrame extends JFrame {
     static CardLayout cards = new CardLayout();
     static Container cardPanel;
 
-
-    JPanel infoPanel;
-    JPanel resultPanel;
-    static GamePanel currentGamePanel;
-
+    static JButton backButton = new JButton("Back");
 
     static String username;
 
@@ -36,40 +31,46 @@ public class MainFrame extends JFrame {
         readAllStages("stage.txt"); // move desired
         readAllRecords("record.txt"); // move desired
 
-        setTitle("Demo");
+        setTitle("Nonogram");
         cardPanel = new JPanel(cards);
 
-        infoPanel = new JPanel();
-        JButton infoButton = new JButton("button");
-        infoButton.addActionListener(e->{
-            // modified
-            StageSelection s = new StageSelection();
-            s.init(username);
-            cardPanel.add(s, "select");
-            showCard("select");
-
+        backButton.addActionListener(e->{
+            MainScene m = new MainScene();
+            m.setVisible(true);
+            dispose();
         });
-        infoPanel.add(infoButton);
 
-        resultPanel = new JPanel();
-        JButton resultButton = new JButton("button");
-        resultButton.addActionListener(e->cards.show(cardPanel,"info"));
+        StageSelection s = new StageSelection();
+        s.init(username,backButton);
+        cardPanel.add(s, "select");
+        showCard("select");
 
 
-        cardPanel.add(infoPanel, "info");
         getContentPane().add(cardPanel);
+
+        setPreferredSize(new Dimension(800, 700));
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false);
+        pack();
+        setVisible(true);
 
     }
 
-    public static void resetGamePanel() {
-        if (currentGamePanel != null) {
-            cardPanel.remove(currentGamePanel);
+    public static HashMap<String,ArrayList<Record>> getRecords() {
+        return records;
+    }
+
+    public static void addRecord(String name) {
+        String filePath = "record.txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath,true))) {
+            writer.write(name);
+            System.out.println("File written successfully!");
+        } catch (IOException e) {
+            System.err.println("Error writing to file: " + e.getMessage());
         }
     }
 
-    public static void setCurrentGamePanel(GamePanel gamePanel) {
-        currentGamePanel = gamePanel;
-    }
 
     public void readAllStages(String path) {
         Scanner scanner = openFile(path);
@@ -144,13 +145,23 @@ public class MainFrame extends JFrame {
         cards.show(cardPanel, key);
     }
 
+    public static void updateAndShow() {
+        StageSelection s = new StageSelection();
+        s.init(username,backButton);
+        cardPanel.add(s, "select");
+        showCard("select");
+    }
+
+
+
+
     public static String getUsername() {
         return username;
     }
 
 
     public static void main(String[] args) {
-        MainFrame frame = new MainFrame();
+        GameControlFrame frame = new GameControlFrame();
         frame.createAndShowGUI();
     }
 }

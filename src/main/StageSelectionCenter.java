@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class StageSelectionCenter extends JPanel {
 
-    StageButton[] buttons = new StageButton[MainFrame.stages.size()];
+    StageButton[] buttons = new StageButton[GameControlFrame.stages.size()];
 
     public void setButtons() {
         for (int i = 0; i < buttons.length; i++) {
@@ -26,7 +26,7 @@ public class StageSelectionCenter extends JPanel {
     public void init() {
         setLayout(new GridLayout(3, 4)); // ??
         setButtons();
-        setEnable(MainFrame.records.get(MainFrame.getUsername()));
+        setEnable(GameControlFrame.records.get(GameControlFrame.getUsername()));
 
         for (StageButton button : buttons) {
             JPanel tmp = new JPanel();
@@ -56,9 +56,9 @@ public class StageSelectionCenter extends JPanel {
             int index=i;
             buttons[i].addActionListener(e->{
                 GamePanel gp = new GamePanel();
-                gp.init(MainFrame.stages.get(index));
-                MainFrame.cardPanel.add(gp, "game");
-                MainFrame.showCard("game");
+                gp.init(GameControlFrame.stages.get(index));
+                GameControlFrame.cardPanel.add(gp, "game");
+                GameControlFrame.showCard("game");
             });
         }
     }

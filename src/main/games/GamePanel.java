@@ -1,6 +1,6 @@
 package main.games;
 
-import main.MainFrame;
+import main.GameControlFrame;
 import main.Record;
 import main.stage.Stage;
 
@@ -26,7 +26,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
         JPanel north = new JPanel();
         JButton back = new JButton("back");
-        back.addActionListener(e-> MainFrame.showCard("select"));
+        back.addActionListener(e-> GameControlFrame.showCard("select"));
         north.add(back);
         north.setPreferredSize(new Dimension(WIDTH,50));
         JPanel right = new JPanel();
@@ -58,8 +58,9 @@ public class GamePanel extends JPanel implements ActionListener {
         String timeSpent = LeftPanel.getTime();
         String difficulty = FullBoard.currentStage.getDifficulty();
         String stageName = FullBoard.currentStage.getName();
-        String name = MainFrame.getUsername();
+        String name = GameControlFrame.getUsername();
         Record record = new Record(name, stageName,difficulty, timeSpent);
-        System.out.println(record);
+        GameControlFrame.addRecord(record.toString());
+        GameControlFrame.getRecords().get(name).add(record);
     }
 }

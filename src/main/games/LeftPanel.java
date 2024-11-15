@@ -1,8 +1,6 @@
 package main.games;
 
-import main.MainFrame;
-import main.games.Board;
-import main.games.ClockComponent;
+import main.GameControlFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +25,7 @@ public class LeftPanel extends JPanel implements ActionListener {
         clock.clearClock();
         clearHint();
 
-        JLabel userLabel = new JLabel("user : "+ MainFrame.getUsername());
+        JLabel userLabel = new JLabel("user : "+ GameControlFrame.getUsername());
         userLabel.setHorizontalAlignment(SwingConstants.CENTER);
         userLabel.setFont(userLabel.getFont().deriveFont(24.0f));
 

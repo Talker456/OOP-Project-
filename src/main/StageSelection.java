@@ -1,15 +1,17 @@
 package main;
 
+import main.scenes.MainScene;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class StageSelection extends JPanel {
 
+    public void init(String username,JButton back) {
 
-    public void init(String username) {
         setLayout(new BorderLayout());
         JPanel upper = new JPanel();
-        setUpperLabel(username, upper);
+        setUpperLabel(username, upper,back);
 
 
 
@@ -26,18 +28,17 @@ public class StageSelection extends JPanel {
         setPreferredSize(new Dimension(800, 700));
     }
 
-    private void setUpperLabel(String username, JPanel upper) {
+    private void setUpperLabel(String username, JPanel upper,JButton back) {
         upper.setLayout(new GridLayout(1, 3));
         upper.setPreferredSize(new Dimension(WIDTH,50));
         JLabel nameLabel = new JLabel("user:" + username);
         nameLabel.setVerticalTextPosition(SwingConstants.CENTER);
         JLabel tempLabel = new JLabel("temp");
         tempLabel.setVerticalTextPosition(SwingConstants.CENTER);
-        JLabel tempLabel2 = new JLabel("temp2");
-        tempLabel2.setVerticalTextPosition(SwingConstants.CENTER);
+
 
         upper.add(nameLabel);
         upper.add(tempLabel);
-        upper.add(tempLabel2);
+        upper.add(back);
     }
 }

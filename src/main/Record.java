@@ -30,6 +30,6 @@ public class Record {
 
     @Override
     public String toString() {
-        return "Record [username=" + username + ",stage name="+stageName+", difficulty=" + difficulty + ", time="+time;
+        return username + " " + stageName + " " + difficulty + " " + time+"\n";
     }
 }
