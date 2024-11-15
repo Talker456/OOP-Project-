@@ -1,4 +1,8 @@
-package main;
+package main.games;
+
+import main.MainFrame;
+import main.games.Board;
+import main.games.ClockComponent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +11,6 @@ import java.awt.event.ActionListener;
 
 public class LeftPanel extends JPanel implements ActionListener {
 
-    // HTML syntax vs setHorizontalAlignment, etc
     //<html><p style='font-size:15px'>O</p></html>
     //html><p style='font-size:15px;'>Hint<br>3/3</p></html>
     static int hintLeft = 3;
@@ -24,9 +27,9 @@ public class LeftPanel extends JPanel implements ActionListener {
         clock.clearClock();
         clearHint();
 
-        JLabel topLabel = new JLabel("user : ");
-        topLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        topLabel.setFont(topLabel.getFont().deriveFont(24.0f));
+        JLabel userLabel = new JLabel("user : "+ MainFrame.getUsername());
+        userLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        userLabel.setFont(userLabel.getFont().deriveFont(24.0f));
 
         JPanel bottomPanel = new JPanel(new GridLayout(1, 2));
 
@@ -37,7 +40,7 @@ public class LeftPanel extends JPanel implements ActionListener {
         bottomPanel.add(hintButton);
 
         this.add(clock, BorderLayout.CENTER);
-        this.add(topLabel, BorderLayout.CENTER);
+        this.add(userLabel, BorderLayout.CENTER);
         this.add(bottomPanel, BorderLayout.LINE_END);
 
     }
@@ -67,9 +70,9 @@ public class LeftPanel extends JPanel implements ActionListener {
         hintButton.setText(setHintButtonText());
     }
 
-    public static int getHintLeft() {
-        return hintLeft;
-    }
+//    public static int getHintLeft() {
+//        return hintLeft;
+//    }
 
     public static String getTime() {
         return ClockComponent.t.toString();

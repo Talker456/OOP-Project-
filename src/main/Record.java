@@ -1,20 +1,35 @@
 package main;
 
+import java.util.Scanner;
+
 public class Record {
     String username;
+    String stageName;
     String difficulty;
     String time;
-    int hintUsed;
 
-    public Record(String username, String difficulty, String time, int hintUsed) {
+    public Record(){}
+
+    public Record(String username, String stageName,String difficulty, String time) {
         this.username = username;
+        this.stageName = stageName;
         this.difficulty = difficulty;
         this.time = time;
-        this.hintUsed = hintUsed;
+    }
+
+    public void read(Scanner scanner,String username) {
+        this.username = username;
+        this.stageName = scanner.next();
+        this.difficulty = scanner.next();
+        this.time = scanner.next();
+    }
+
+    public String getStageName() {
+        return stageName;
     }
 
     @Override
     public String toString() {
-        return "Record [username=" + username + ", difficulty=" + difficulty + ", time="+time+", hintUsed=" + hintUsed;
+        return "Record [username=" + username + ",stage name="+stageName+", difficulty=" + difficulty + ", time="+time;
     }
 }

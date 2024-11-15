@@ -1,4 +1,6 @@
-package main;
+package main.games;
+
+import main.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -107,7 +109,7 @@ public class Board extends JPanel implements ActionListener {
 
     public void terminate() {
         GamePanel.terminate();
-        MainFrame.showMain();
+        MainFrame.showCard("info");
     }
 
     public void hintCall() {

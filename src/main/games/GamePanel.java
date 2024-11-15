@@ -1,13 +1,13 @@
-package main;
+package main.games;
 
+import main.MainFrame;
+import main.Record;
 import main.stage.Stage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 
 public class GamePanel extends JPanel implements ActionListener {
 
@@ -25,6 +25,9 @@ public class GamePanel extends JPanel implements ActionListener {
         fullBoard.init(stage);
 
         JPanel north = new JPanel();
+        JButton back = new JButton("back");
+        back.addActionListener(e-> MainFrame.showCard("select"));
+        north.add(back);
         north.setPreferredSize(new Dimension(WIDTH,50));
         JPanel right = new JPanel();
         right.setPreferredSize(new Dimension(50,HEIGHT));
@@ -52,10 +55,11 @@ public class GamePanel extends JPanel implements ActionListener {
 
     public static void terminate(){
         System.out.println("terminated");
-        int hintUsed = 3 - LeftPanel.getHintLeft();
         String timeSpent = LeftPanel.getTime();
         String difficulty = FullBoard.currentStage.getDifficulty();
-        Record record = new Record("name", difficulty, timeSpent, hintUsed);
+        String stageName = FullBoard.currentStage.getName();
+        String name = MainFrame.getUsername();
+        Record record = new Record(name, stageName,difficulty, timeSpent);
         System.out.println(record);
     }
 }

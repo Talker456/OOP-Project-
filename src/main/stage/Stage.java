@@ -9,7 +9,7 @@ public class Stage {
     String[] image;
 
     public void read(Scanner scanner) {
-        name = "Stage" + (++count);
+        name = "Level" + (++count);
     }
 
     public String[] getImage() {
@@ -18,5 +18,9 @@ public class Stage {
 
     public String getDifficulty() {
         return difficulty;
+    }
+
+    public String getName() {
+        return name;
     }
 }

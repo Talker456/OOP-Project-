@@ -1,4 +1,4 @@
-package main;
+package main.games;
 
 import main.stage.Stage;
 

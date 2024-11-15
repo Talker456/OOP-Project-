@@ -1,4 +1,4 @@
-package main;
+package main.games;
 
 import java.awt.Dimension;
 import java.awt.Font;
