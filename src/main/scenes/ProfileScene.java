@@ -1,5 +1,6 @@
 package main.scenes;
 
+import main.start.MenuScreen;
 import test.mptest.MainScene;
 
 import javax.swing.*;
@@ -17,8 +18,11 @@ public class ProfileScene extends JFrame implements ActionListener {
 	JLabel search, resultLabel;
 	JTextField nicknameField;
 	Random random = new Random();
+	static String currentUser;
 	
-	public ProfileScene() {
+	public ProfileScene(String username) {
+		currentUser = username;
+
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("Nonograms");
 		pane.setLayout(null);
@@ -81,7 +85,7 @@ public class ProfileScene extends JFrame implements ActionListener {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ProfileScene profilescene = new ProfileScene();
+		ProfileScene profilescene = new ProfileScene(currentUser);
 	}
 
 	private static String searchPasswordByNickname(String nickname) { 
@@ -105,9 +109,9 @@ public class ProfileScene extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == undoButton) {
-			MainScene mainscene = new MainScene();
-			mainscene.setVisible(true);
-			dispose();
+			MenuScreen m = new MenuScreen(currentUser);
+			m.setVisible(true);
+			this.setVisible(false);
 		}
 	}
 

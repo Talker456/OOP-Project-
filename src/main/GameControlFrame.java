@@ -5,6 +5,7 @@ import main.stage.EasyStage;
 import main.stage.HardStage;
 import main.stage.NormalStage;
 import main.stage.Stage;
+import main.start.MenuScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,12 +25,12 @@ public class GameControlFrame extends JFrame {
 
     static String username;
 
-    public void setupMainPanel() {
+    public void setupMainPanel(String currentUserName) {
         stages = new ArrayList<>();
         records = new HashMap<>();
 
         //Temporary username
-        username = "user1";
+        username = currentUserName;
 
         readAllStages("stage.txt"); // move desired
         readAllRecords("record.txt"); // move desired
@@ -38,7 +39,7 @@ public class GameControlFrame extends JFrame {
         cardPanel = new JPanel(cards);
 
         backButton.addActionListener(e->{
-            MainScene m = new MainScene();
+            MenuScreen m = new MenuScreen(username);
             m.setVisible(true);
             dispose();
         });
@@ -138,7 +139,7 @@ public class GameControlFrame extends JFrame {
 
     private void createAndShowGUI() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setupMainPanel();
+        setupMainPanel(username);
         setPreferredSize(new Dimension(800, 700));
         pack();
         setVisible(true);

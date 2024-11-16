@@ -1,6 +1,7 @@
 package main.ranking;
 
 import main.scenes.MainScene;
+import main.start.MenuScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,8 +16,11 @@ import java.util.Map;
 
 public class Rankings {
     private Map<String, List<RankingEntry>> stageRankings;
+    static String currentUser;
 
-    public Rankings() {
+    public Rankings(String username) {
+        currentUser = username;
+
         // Initialize rankings for each stage using LinkedHashMap to preserve order
         stageRankings = new LinkedHashMap<>();
         for (int i = 1; i <= 10; i++) {
@@ -65,7 +69,7 @@ public class Rankings {
 
         JButton back = new JButton("Back");
         back.addActionListener(e->{
-            MainScene m = new MainScene();
+            MenuScreen m = new MenuScreen(currentUser);
             m.setVisible(true);
             rankingFrame.dispose();
         });

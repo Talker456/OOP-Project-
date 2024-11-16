@@ -93,18 +93,18 @@ public class MainScene extends JFrame implements ActionListener {
 			dispose();
 		}
 		if (e.getSource() == profileButton) {
-			ProfileScene profilescene = new ProfileScene();
+			ProfileScene profilescene = new ProfileScene("");
 			profilescene.setVisible(true);
 			dispose();
 		}
 		if (e.getSource() == startButton) {
 			GameControlFrame m = new GameControlFrame();
-			m.setupMainPanel();
+			m.setupMainPanel("TEMP");
 			m.setVisible(true);
 			dispose();
 		}
 		if (e.getSource() == rankButton) {
-			Rankings rankings = new Rankings();
+			Rankings rankings = new Rankings("");
 			rankings.showRankings();
 			dispose();
 		}
