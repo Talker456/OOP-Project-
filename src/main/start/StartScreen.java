@@ -1,5 +1,7 @@
 package main.start;
 
+import main.MainController;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -52,7 +54,10 @@ public class StartScreen extends JFrame {
 
         // 로그인 버튼 클릭 시 메뉴 화면으로 전환
         startButton.addActionListener(e -> {
-            new MenuScreen(nameField.getText());  // 메뉴 화면 생성
+            String username = nameField.getText();
+            new MenuScreen(username);  // 메뉴 화면 생성
+            MainController.setUsername(username);
+            MainController.print();
             setVisible(false); // 현재 창을 숨김
         });
     }

@@ -1,7 +1,10 @@
 package main.games;
 
+import com.sun.tools.javac.Main;
 import main.GameControlFrame;
+import main.MainController;
 import main.Record;
+import main.StageSelectionFrame;
 import main.stage.Stage;
 
 import javax.swing.*;
@@ -9,12 +12,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GamePanel extends JPanel implements ActionListener {
+public class InGameFrame extends JFrame implements ActionListener {
 
     LeftPanel left;
     FullBoard fullBoard;
 
-    public void init(Stage stage) {
+    public InGameFrame(Stage stage) {
+        setTitle("NONOGRAMS");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         left = new LeftPanel();
         fullBoard = new FullBoard();
 
@@ -22,11 +28,11 @@ public class GamePanel extends JPanel implements ActionListener {
 
         left.init();
         left.setEventHandler(this);
-        fullBoard.init(stage,new InGameFrame(new Stage())); // temp
+        fullBoard.init(stage,this);
 
         JPanel north = new JPanel();
         JButton back = new JButton("back");
-        back.addActionListener(e-> GameControlFrame.showCard("select"));
+        back.addActionListener(e-> new StageSelectionFrame());
         north.add(back);
         north.setPreferredSize(new Dimension(WIDTH,50));
         JPanel right = new JPanel();
@@ -39,6 +45,9 @@ public class GamePanel extends JPanel implements ActionListener {
         this.add(fullBoard,BorderLayout.CENTER);
         this.add(right, BorderLayout.LINE_END);
         this.add(south, BorderLayout.PAGE_END);
+
+        setVisible(true);
+        setSize(new Dimension(800, 700));
     }
 
     @Override
@@ -58,9 +67,12 @@ public class GamePanel extends JPanel implements ActionListener {
         String timeSpent = LeftPanel.getTime();
         String difficulty = FullBoard.currentStage.getDifficulty();
         String stageName = FullBoard.currentStage.getName();
-        String name = GameControlFrame.getUsername();
-        Record record = new Record(name, stageName,difficulty, timeSpent);
-        GameControlFrame.writeRecord(record.toString());
-        GameControlFrame.addRecord(record);
+        String name = MainController.getCurrentUser();
+        Record record = new Record(name, stageName, difficulty, timeSpent);
+
+        MainController.writeRecord(record.toString());
+        MainController.getRecordManager().addRecord(record);
+
     }
+
 }

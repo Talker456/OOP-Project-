@@ -1,10 +1,8 @@
 package main;
 
-import main.manager.Manageable;
-
 import java.util.Scanner;
 
-public class Record implements Manageable {
+public class Record{
     String username;
     String stageName;
     String difficulty;
@@ -35,6 +33,10 @@ public class Record implements Manageable {
 
     public void print() {
         System.out.println(username+", "+stageName+", "+difficulty+", "+time);
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getStageName() {

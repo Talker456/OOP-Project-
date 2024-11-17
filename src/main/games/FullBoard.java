@@ -11,10 +11,10 @@ public class FullBoard extends JPanel {
 
     static int DIFFICULTY_WEIGHT; // MOD
     static double RATIO;
-    Board testBoard;
+    Board board;
     static Stage currentStage;
 
-    void init(Stage stage) {
+    public void init(Stage stage,InGameFrame frame) {
         currentStage = stage;
         DIFFICULTY_WEIGHT = currentStage.getImage().length;
         RATIO = (double) DIFFICULTY_WEIGHT / (Math.round(DIFFICULTY_WEIGHT/2.0));
@@ -25,8 +25,8 @@ public class FullBoard extends JPanel {
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
 
-        testBoard = new Board();
-        testBoard.init(currentStage.getImage());
+        board = new Board();
+        board.init(currentStage.getImage(),frame);
 
         JPanel bottomRight = new JPanel();
         bottomRight.setBackground(Color.gray);
@@ -50,7 +50,7 @@ public class FullBoard extends JPanel {
         // bottom left
         make(cd,0,1,1,1,1.0, RATIO);
 
-        make(testBoard,1,1,1,1, RATIO, RATIO);
+        make(board,1,1,1,1, RATIO, RATIO);
 
         this.add(topLeft);
 
@@ -59,7 +59,7 @@ public class FullBoard extends JPanel {
         // bottom left
         this.add(cd);
 
-        this.add(testBoard);
+        this.add(board);
 
         setPreferredSize(new Dimension(600, 600));
     }

@@ -2,15 +2,7 @@ user1 Level1 Easy 00:00:04
 user1 Level2 Easy 00:00:04
 user1 Level3 Easy 00:00:04
 user1 Level4 Easy 00:00:04
-user1 Level5 Easy 00:00:05
-user1 Level6 Easy 00:00:03
 user1 Level7 Easy 00:00:03
 resign Level1 Easy 00:00:14
 resign Level2 Easy 00:00:14
 resign Level3 Easy 00:00:14
-resign Level4 Easy 00:00:14
-resign Level5 Easy 00:00:14
-resign Level6 Easy 00:00:05
-mister Level1 Easy 00:00:01
-ggggg Level1 Easy 00:00:02
-minus Level1 Easy 00:00:02

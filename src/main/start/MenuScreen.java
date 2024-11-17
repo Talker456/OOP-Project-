@@ -2,6 +2,7 @@ package main.start;
 
 import main.GameControlFrame;
 import main.StageSelection;
+import main.StageSelectionFrame;
 import main.ranking.Rankings;
 import main.scenes.ProfileScene;
 
@@ -89,13 +90,17 @@ public class MenuScreen extends JFrame {
         JButton stageButton = new JButton();
         stageButton.setBackground(Color.LIGHT_GRAY); 
         stageButton.setOpaque(true);
+//        stagebutton.addActionListener(e->{
+//            GameControlFrame m = new GameControlFrame();
+//            m.setupMainPanel(currentUserName);
+//            m.setVisible(true);
+//            dispose();
+//        });
         stagebutton.addActionListener(e->{
-            GameControlFrame m = new GameControlFrame();
-            m.setupMainPanel(currentUserName);
-            m.setVisible(true);
+            new StageSelectionFrame();
             dispose();
         });
-        
+
         // 센터 이미지 불러오기
         ImageIcon centerIcon;
         try {

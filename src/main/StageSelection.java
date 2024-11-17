@@ -19,7 +19,7 @@ public class StageSelection extends JPanel {
         lower.setPreferredSize(new Dimension(WIDTH, 50));
 
         StageSelectionCenter center = new StageSelectionCenter();
-        center.init();
+        center.init(new StageSelectionFrame());
 
         this.add(upper,BorderLayout.PAGE_START);
         this.add(center,BorderLayout.CENTER);

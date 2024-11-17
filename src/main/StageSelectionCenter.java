@@ -1,7 +1,7 @@
 package main;
 
 
-import main.games.GamePanel;
+import main.games.InGameFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,10 +25,11 @@ public class StageSelectionCenter extends JPanel {
     //            cards.show(cardPanel, "game");
 
 
-    public void init() {
+    public void init(StageSelectionFrame parentFrame) {
         setLayout(new GridLayout(3, 4)); // ??
         setButtons();
-        setEnable(GameControlFrame.records.get(GameControlFrame.getUsername()));
+        String username = MainController.getCurrentUser();
+        setEnable(MainController.recordManager.getUserRecord(username),parentFrame);
 
         for (StageButton button : buttons) {
             JPanel tmp = new JPanel();
@@ -41,7 +42,7 @@ public class StageSelectionCenter extends JPanel {
         }
     }
 
-    public void setEnable(ArrayList<Record> userRecords) {
+    public void setEnable(ArrayList<Record> userRecords, StageSelectionFrame frame) {
         int max = 0;
         if (userRecords != null) {
             for (Record userRecord : userRecords) {
@@ -56,19 +57,20 @@ public class StageSelectionCenter extends JPanel {
             buttons[i].setBackground(new Color(169, 246, 164));
             if(i==max) buttons[i].setBackground(Color.white);
             int index=i;
-            buttons[i].addActionListener(e->{
-                GamePanel gp = new GamePanel();
-                gp.init(GameControlFrame.stages.get(index));
-                GameControlFrame.cardPanel.add(gp, "game");
-                GameControlFrame.showCard("game");
+//            buttons[i].addActionListener(e->{
+//                GamePanel gp = new GamePanel();
+//                gp.init(GameControlFrame.stages.get(index));
+//                GameControlFrame.cardPanel.add(gp, "game");
+//                GameControlFrame.showCard("game");
+//            });
+            buttons[i].addActionListener(e -> {
+                InGameFrame game = new InGameFrame(MainController.stageManager.getStage(index));
+                frame.dispose();
             });
         }
     }
 
     private void setButtonMargin(JPanel tmp) {
-        System.out.println("WIDTH = " + WIDTH);
-        System.out.println("HEIGHT = " + HEIGHT);
-
         JPanel marginTop = new JPanel();
         marginTop.setPreferredSize(new Dimension(WIDTH, 20));
         JPanel marginBottom = new JPanel();

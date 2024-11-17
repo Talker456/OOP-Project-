@@ -43,4 +43,8 @@ public class StageManager{
         return stages.size();
     }
 
+    public Stage getStage(int index) {
+        return stages.get(index);
+    }
+
 }

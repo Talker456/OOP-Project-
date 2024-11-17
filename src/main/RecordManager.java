@@ -1,10 +1,6 @@
 package main;
 
-import main.manager.Manageable;
-import main.manager.Manager;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class RecordManager {
@@ -26,4 +22,13 @@ public class RecordManager {
         }
     }
 
+    public ArrayList<Record> getUserRecord(String username) {
+        return records.stream()
+               .filter(record -> record.getUsername().equals(username))
+               .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+    }
+
+    public void addRecord(Record record) {
+        records.add(record);
+    }
 }

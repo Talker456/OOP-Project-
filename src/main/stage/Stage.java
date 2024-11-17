@@ -1,10 +1,8 @@
 package main.stage;
 
-import main.manager.Manageable;
-
 import java.util.Scanner;
 
-public class Stage implements Manageable {
+public class Stage {
     static int count;
     String name;
     String difficulty;

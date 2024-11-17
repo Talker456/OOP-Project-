@@ -1,6 +1,7 @@
 package main.games;
 
 import main.GameControlFrame;
+import main.StageSelectionFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,12 +16,14 @@ public class Board extends JPanel implements ActionListener {
     static boolean state=true;
     String[] stageCopy;
     static char[][] currentState;
+    InGameFrame currentFrame;
 
-    void init(String[] img) {
+    void init(String[] img, InGameFrame frame) {
         size = img.length;
         cellPanel = new Pixel[size][size];
         stageCopy = Arrays.copyOf(img, img.length);
         currentState = new char[img.length][img.length];
+        currentFrame = frame;
 
         for (char[] chars : currentState) {
             Arrays.fill(chars, '0');
@@ -108,8 +111,9 @@ public class Board extends JPanel implements ActionListener {
     }
 
     public void terminate() {
-        GamePanel.terminate();
-        GameControlFrame.updateAndShow();
+        InGameFrame.terminate();
+        currentFrame.dispose();
+        new StageSelectionFrame();
     }
 
     public void hintCall() {

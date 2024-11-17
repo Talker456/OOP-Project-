@@ -9,10 +9,12 @@ import java.awt.*;
 public class StageSelectionFrame extends JFrame {
 
     public static void main(String[] args) {
-        new StageSelectionFrame("");
+        new StageSelectionFrame();
     }
 
-    public StageSelectionFrame(String username) {
+    public StageSelectionFrame() {
+        System.out.println("STAGE SELECTION ON");
+
         setTitle("NONOGRAMS");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container c = getContentPane();
@@ -20,18 +22,18 @@ public class StageSelectionFrame extends JFrame {
         setLayout(new BorderLayout());
         JButton backButton = new JButton("back");
         backButton.addActionListener(e->{
-            MenuScreen m = new MenuScreen("name"); // username!!!
+            new MenuScreen("name"); // username!!!
             this.dispose();
         });
 
         JPanel upper = new JPanel();
-        setUpperLabel(username, upper,backButton);
+        setUpperLabel(MainController.getCurrentUser(), upper,backButton);
 
         JPanel lower = new JPanel();
         lower.setPreferredSize(new Dimension(WIDTH, 50));
 
         StageSelectionCenter center = new StageSelectionCenter();
-        center.init();
+        center.init(this);
 
         c.add(upper,BorderLayout.PAGE_START);
         c.add(center,BorderLayout.CENTER);
