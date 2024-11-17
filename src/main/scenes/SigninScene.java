@@ -1,7 +1,5 @@
 package main.scenes;
 
-import test.mptest.MainScene;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

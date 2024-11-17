@@ -1,6 +1,5 @@
 package main;
 
-import main.scenes.MainScene;
 import main.stage.EasyStage;
 import main.stage.HardStage;
 import main.stage.NormalStage;
@@ -64,7 +63,7 @@ public class GameControlFrame extends JFrame {
         return records;
     }
 
-    public static void addRecord(String name) {
+    public static void writeRecord(String name) {
         String filePath = "record.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath,true))) {
@@ -109,12 +108,12 @@ public class GameControlFrame extends JFrame {
             if (records.containsKey(username)) {
                 userRecords = records.get(username);
                 r = new Record();
-                r.read(scanner, username);
+                r.altRead(scanner, username);
                 userRecords.add(r);
             } else {
                 userRecords = new ArrayList<>();
                 r = new Record();
-                r.read(scanner,username);
+                r.altRead(scanner,username);
                 userRecords.add(r);
                 records.put(username, userRecords);
             }
@@ -156,6 +155,16 @@ public class GameControlFrame extends JFrame {
         showCard("select");
     }
 
+    //GameControlFrame.getRecords().get(name).add(record);
+    public static void addRecord(Record record) {
+        if (records.get(username) == null) {
+            ArrayList<Record> list = new ArrayList<>();
+            list.add(record);
+            records.put(username, list);
+        }else{
+            records.get(username).add(record);
+        }
+    }
 
 
 

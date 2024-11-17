@@ -60,7 +60,7 @@ public class GamePanel extends JPanel implements ActionListener {
         String stageName = FullBoard.currentStage.getName();
         String name = GameControlFrame.getUsername();
         Record record = new Record(name, stageName,difficulty, timeSpent);
-        GameControlFrame.addRecord(record.toString());
-        GameControlFrame.getRecords().get(name).add(record);
+        GameControlFrame.writeRecord(record.toString());
+        GameControlFrame.addRecord(record);
     }
 }

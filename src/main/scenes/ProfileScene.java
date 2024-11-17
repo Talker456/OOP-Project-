@@ -1,7 +1,6 @@
 package main.scenes;
 
 import main.start.MenuScreen;
-import test.mptest.MainScene;
 
 import javax.swing.*;
 import java.awt.*;

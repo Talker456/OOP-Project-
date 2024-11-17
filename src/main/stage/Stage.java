@@ -1,12 +1,15 @@
 package main.stage;
 
+import main.manager.Manageable;
+
 import java.util.Scanner;
 
-public class Stage {
+public class Stage implements Manageable {
     static int count;
     String name;
     String difficulty;
     String[] image;
+
 
     public void read(Scanner scanner) {
         name = "Level" + (++count);
@@ -22,5 +25,12 @@ public class Stage {
 
     public String getName() {
         return name;
+    }
+
+    public void print() {
+        System.out.println(name+", "+difficulty);
+        for (String string : image) {
+            System.out.println(string);
+        }
     }
 }

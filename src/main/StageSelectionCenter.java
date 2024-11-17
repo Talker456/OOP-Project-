@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class StageSelectionCenter extends JPanel {
 
-    StageButton[] buttons = new StageButton[GameControlFrame.stages.size()];
+    StageButton[] buttons = new StageButton[MainController.stageManager.size()];
 
     public void setButtons() {
 
