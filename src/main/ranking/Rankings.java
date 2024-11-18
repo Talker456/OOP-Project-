@@ -1,7 +1,6 @@
 package main.ranking;
 
-import main.scenes.MainScene;
-import main.start.MenuScreen;
+import main.start.MenuFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -69,7 +68,7 @@ public class Rankings {
 
         JButton back = new JButton("Back");
         back.addActionListener(e->{
-            MenuScreen m = new MenuScreen(currentUser);
+            MenuFrame m = new MenuFrame(currentUser);
             m.setVisible(true);
             rankingFrame.dispose();
         });

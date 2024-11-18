@@ -6,3 +6,5 @@ user1 Level7 Easy 00:00:03
 resign Level1 Easy 00:00:14
 resign Level2 Easy 00:00:14
 resign Level3 Easy 00:00:14
+fd Level1 Easy 00:00:02
+

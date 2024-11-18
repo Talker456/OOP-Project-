@@ -5,10 +5,10 @@ import main.MainController;
 import javax.swing.*;
 import java.awt.*;
 
-public class StartScreen extends JFrame {
+public class StartFrame extends JFrame {
     private static final long serialVersionUID = 1L;
 
-    public StartScreen() {
+    public StartFrame() {
         setTitle("NONOGRAMS");
         setSize(800, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,7 +55,7 @@ public class StartScreen extends JFrame {
         // 로그인 버튼 클릭 시 메뉴 화면으로 전환
         startButton.addActionListener(e -> {
             String username = nameField.getText();
-            new MenuScreen(username);  // 메뉴 화면 생성
+            new MenuFrame(username);  // 메뉴 화면 생성
             MainController.setUsername(username);
             MainController.print();
             setVisible(false); // 현재 창을 숨김
@@ -63,7 +63,7 @@ public class StartScreen extends JFrame {
     }
 
     public static void main(String[] args) {
-        new StartScreen();// 시작 화면 생성
+        new StartFrame();// 시작 화면 생성
     }
 }
 

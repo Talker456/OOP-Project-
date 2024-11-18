@@ -1,7 +1,6 @@
 package main.start;
 
-import main.GameControlFrame;
-import main.StageSelection;
+import main.RealTimeClock;
 import main.StageSelectionFrame;
 import main.ranking.Rankings;
 import main.scenes.ProfileScene;
@@ -9,11 +8,11 @@ import main.scenes.ProfileScene;
 import javax.swing.*;
 import java.awt.*;
 
-public class MenuScreen extends JFrame {
+public class MenuFrame extends JFrame {
     private static final long serialVersionUID = 1L;
     static String currentUserName;
 
-    public MenuScreen(String username) {
+    public MenuFrame(String username) {
         setTitle("NONOGRAMS");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container c = getContentPane();
@@ -138,7 +137,7 @@ public class MenuScreen extends JFrame {
         westButton.setForeground(Color.WHITE);
         westButton.setFont(font);
         westButton.addActionListener(e->{
-            StartScreen s = new StartScreen();
+            StartFrame s = new StartFrame();
             s.setVisible(true);
             this.setVisible(false);
         });

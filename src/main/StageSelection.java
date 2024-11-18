@@ -1,7 +1,5 @@
 package main;
 
-import main.scenes.MainScene;
-
 import javax.swing.*;
 import java.awt.*;
 

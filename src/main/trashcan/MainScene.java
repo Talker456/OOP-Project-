@@ -1,7 +1,8 @@
-package main.scenes;
+package main.trashcan;
 
 import main.GameControlFrame;
 import main.ranking.Rankings;
+import main.scenes.ProfileScene;
 
 import javax.swing.*;
 import java.awt.*;

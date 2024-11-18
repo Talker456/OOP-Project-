@@ -19,14 +19,9 @@ public class StageSelectionCenter extends JPanel {
         }
     }
 
-    //GamePanel gp = new GamePanel();
-    //            gp.init(stages.get(r.nextInt(stages.size())));
-    //            cardPanel.add(gp, "game");
-    //            cards.show(cardPanel, "game");
-
-
     public void init(StageSelectionFrame parentFrame) {
         setLayout(new GridLayout(3, 4)); // ??
+        setBackground(Color.lightGray);
         setButtons();
         String username = MainController.getCurrentUser();
         setEnable(MainController.recordManager.getUserRecord(username),parentFrame);
@@ -57,14 +52,8 @@ public class StageSelectionCenter extends JPanel {
             buttons[i].setBackground(new Color(169, 246, 164));
             if(i==max) buttons[i].setBackground(Color.white);
             int index=i;
-//            buttons[i].addActionListener(e->{
-//                GamePanel gp = new GamePanel();
-//                gp.init(GameControlFrame.stages.get(index));
-//                GameControlFrame.cardPanel.add(gp, "game");
-//                GameControlFrame.showCard("game");
-//            });
             buttons[i].addActionListener(e -> {
-                InGameFrame game = new InGameFrame(MainController.stageManager.getStage(index));
+                new InGameFrame(MainController.stageManager.getStage(index));
                 frame.dispose();
             });
         }
@@ -76,9 +65,9 @@ public class StageSelectionCenter extends JPanel {
         JPanel marginBottom = new JPanel();
         marginBottom.setPreferredSize(new Dimension(WIDTH, 20));
         JPanel marginRight = new JPanel();
-        marginRight.setPreferredSize(new Dimension(20, HEIGHT));
+        marginRight.setPreferredSize(new Dimension(10, HEIGHT));
         JPanel marginLeft = new JPanel();
-        marginLeft.setPreferredSize(new Dimension(20, HEIGHT));
+        marginLeft.setPreferredSize(new Dimension(10, HEIGHT));
 
         tmp.add(marginTop, BorderLayout.NORTH);
         tmp.add(marginBottom, BorderLayout.SOUTH);

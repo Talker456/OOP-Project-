@@ -1,7 +1,10 @@
-package main.games;
+package main.trashcan;
 
 import main.GameControlFrame;
 import main.Record;
+import main.games.FullBoard;
+import main.games.InGameFrame;
+import main.games.LeftPanel;
 import main.stage.Stage;
 
 import javax.swing.*;
@@ -43,24 +46,24 @@ public class GamePanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JButton source = (JButton) e.getSource();
-
-        if (source.equals(left.hintButton)) {
-            if (left.isHintLeft()) {
-                left.hintUse();
-                fullBoard.board.hintCall();
-            }
-        }
+//        JButton source = (JButton) e.getSource();
+//
+//        if (source.equals(left.hintButton)) {
+//            if (left.isHintLeft()) {
+//                left.hintUse();
+//                fullBoard.board.hintCall();
+//            }
+//        }
     }
 
-    public static void terminate(){
-        System.out.println("terminated");
-        String timeSpent = LeftPanel.getTime();
-        String difficulty = FullBoard.currentStage.getDifficulty();
-        String stageName = FullBoard.currentStage.getName();
-        String name = GameControlFrame.getUsername();
-        Record record = new Record(name, stageName,difficulty, timeSpent);
-        GameControlFrame.writeRecord(record.toString());
-        GameControlFrame.addRecord(record);
-    }
+//    public static void terminate(){
+//        System.out.println("terminated");
+//        String timeSpent = LeftPanel.getTime();
+//        String difficulty = FullBoard.currentStage.getDifficulty();
+//        String stageName = FullBoard.currentStage.getName();
+//        String name = GameControlFrame.getUsername();
+//        Record record = new Record(name, stageName,difficulty, timeSpent);
+//        GameControlFrame.writeRecord(record.toString());
+//        GameControlFrame.addRecord(record);
+//    }
 }

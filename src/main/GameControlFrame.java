@@ -4,7 +4,7 @@ import main.stage.EasyStage;
 import main.stage.HardStage;
 import main.stage.NormalStage;
 import main.stage.Stage;
-import main.start.MenuScreen;
+import main.start.MenuFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,7 +38,7 @@ public class GameControlFrame extends JFrame {
         cardPanel = new JPanel(cards);
 
         backButton.addActionListener(e->{
-            MenuScreen m = new MenuScreen(username);
+            MenuFrame m = new MenuFrame(username);
             m.setVisible(true);
             dispose();
         });

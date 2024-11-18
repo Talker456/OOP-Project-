@@ -1,6 +1,6 @@
 package main;
 
-import main.start.StartScreen;
+import main.start.StartFrame;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -40,10 +40,7 @@ public class MainController {
         stageManager.readAllStages(openFile("stage.txt"));
         recordManager.readAllRecord(openFile("record.txt"));
 
-        stageManager.print();
-        recordManager.print();
-
-        new StartScreen();
+        new StartFrame(); // 시작
     }
 
     public static RecordManager getRecordManager() {
