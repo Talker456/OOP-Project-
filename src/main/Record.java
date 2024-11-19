@@ -1,5 +1,6 @@
 package main;
 
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Record{
@@ -41,6 +42,10 @@ public class Record{
 
     public String getStageName() {
         return stageName;
+    }
+
+    public LocalTime getTimeAsLocalTime() {
+        return LocalTime.parse(time);
     }
 
     @Override

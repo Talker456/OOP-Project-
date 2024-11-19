@@ -1,7 +1,5 @@
 package main.games;
 
-import com.sun.tools.javac.Main;
-import main.GameControlFrame;
 import main.MainController;
 import main.Record;
 import main.StageSelectionFrame;

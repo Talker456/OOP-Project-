@@ -1,5 +1,6 @@
 package main;
 
+import com.sun.tools.javac.Main;
 import main.start.StartFrame;
 
 import java.io.File;
@@ -43,8 +44,14 @@ public class MainController {
         new StartFrame(); // 시작
     }
 
+
+
     public static RecordManager getRecordManager() {
         return recordManager;
+    }
+
+    public static StageManager getStageManager() {
+        return stageManager;
     }
 
     public Scanner openFile(String path) {

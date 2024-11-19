@@ -1,6 +1,8 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class RecordManager {
@@ -26,6 +28,14 @@ public class RecordManager {
         return records.stream()
                .filter(record -> record.getUsername().equals(username))
                .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+    }
+
+    public ArrayList<Record> getStageRecord(String stageName) {
+        ArrayList<Record> collected = records.stream()
+                .filter(record -> record.getStageName().equals(stageName))
+                .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+        collected.sort(Comparator.comparing(Record::getTimeAsLocalTime));
+        return collected;
     }
 
     public void addRecord(Record record) {

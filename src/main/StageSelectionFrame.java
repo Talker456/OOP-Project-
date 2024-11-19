@@ -46,7 +46,7 @@ public class StageSelectionFrame extends JFrame {
     private void setBottomPanel(JPanel bottom) {
         bottom.setPreferredSize(new Dimension(WIDTH, 50));
         bottom.setLayout(new GridLayout(1, 3));
-        JButton bottomButton1 = new JButton("User : "+MainController.getCurrentUser());
+        JButton bottomButton1 = new JButton("User : "+ MainController.getCurrentUser());
         bottomButton1.setEnabled(false);
         bottomButton1.setForeground(Color.white);
         bottomButton1.setBackground(Color.darkGray);

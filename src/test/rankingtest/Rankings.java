@@ -1,81 +1,55 @@
-package main.ranking;
 
-import main.MainController;
-import main.Record;
-import main.start.MenuFrame;
+package test.rankingtest;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
+import static test.rankingtest.alternate.getStageRecords;
 
-public class Rankings extends JFrame {
-
-    Font font = new Font("Arial", Font.BOLD, 20);
-
-    public Rankings(String username) {
-        setTitle("NONOGRAMS");
-        setSize(new Dimension(800, 700));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        setLayout(new BorderLayout());
-        Container contentPane = getContentPane();
+public class Rankings {
+    public Rankings(){
+        JFrame rankingFrame = new JFrame("NONOGRAMS");
+        rankingFrame.setSize(800, 700); // 화면 크기 수정
+        rankingFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         JPanel mainPanel = new JPanel();
-        setMainPanel(mainPanel);
-
-        JButton backButton = new JButton("back");
-        backButton.setSize(50, HEIGHT);
-        setButtonStyle(backButton);
-        backButton.addActionListener(e->{
-            new MenuFrame(username);
-        });
-
-        JPanel bottomPanel = new JPanel();
-        setBottomPanel(bottomPanel);
-
-        contentPane.add(backButton, BorderLayout.WEST);
-        contentPane.add(mainPanel, BorderLayout.CENTER);
-        contentPane.add(bottomPanel, BorderLayout.SOUTH);
-
-        setVisible(true);
-    }
-
-    private void setBottomPanel(JPanel bottomPanel) {
-        bottomPanel.setLayout(new GridLayout(1, 3));
-        JButton bottomButton1 = new JButton("b1");
-        JButton bottomButton2 = new JButton("b2");
-        JButton bottomButton3 = new JButton("b3");
-        setButtonStyle(bottomButton1);
-        setButtonStyle(bottomButton2);
-        setButtonStyle(bottomButton3);
-        bottomPanel.add(bottomButton1);
-        bottomPanel.add(bottomButton2);
-        bottomPanel.add(bottomButton3);
-    }
-
-    private void setButtonStyle(JButton jButton) {
-        jButton.setForeground(Color.white);
-        jButton.setBackground(Color.darkGray);
-        jButton.setFont(font);
-    }
-
-    private void setMainPanel(JPanel mainPanel) {
         mainPanel.setLayout(new GridLayout(3, 4, 15, 15));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         mainPanel.setBackground(new Color(230, 230, 250));
 
-
-        for (int i = 0; i < MainController.getStageManager().size(); i++) {
-            String stageName = MainController.getStageManager().getStage((i)).getName();
-            JButton stageButton = new JButton(stageName);
+        for (String stage : alternate.getStages()) {
+            JButton stageButton = new JButton(stage);
             stageButton.setFont(new Font("Serif", Font.BOLD, 20));
-            stageButton.addActionListener(new StageButtonListener(stageName));
+            stageButton.addActionListener(new StageButtonListener(stage));
             mainPanel.add(stageButton);
         }
+
+        rankingFrame.add(mainPanel);
+        rankingFrame.setVisible(true);
+    }
+
+    public void showRankings() {
+        JFrame rankingFrame = new JFrame("NONOGRAMS");
+        rankingFrame.setSize(800, 700); // 화면 크기 수정
+        rankingFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new GridLayout(3, 4, 15, 15));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        mainPanel.setBackground(new Color(230, 230, 250));
+
+        for (String stage : alternate.getStages()) {
+            JButton stageButton = new JButton(stage);
+            stageButton.setFont(new Font("Serif", Font.BOLD, 20));
+            stageButton.addActionListener(new StageButtonListener(stage));
+            mainPanel.add(stageButton);
+        }
+
+        rankingFrame.add(mainPanel);
+        rankingFrame.setVisible(true);
     }
 
     private class StageButtonListener implements ActionListener {
@@ -110,7 +84,7 @@ public class Rankings extends JFrame {
         rankingPanel.add(titleLabel);
         rankingPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
-        ArrayList<Record> rankings = MainController.getRecordManager().getStageRecord(stage);
+        List<Record> rankings = getStageRecords(stage);
         for (int i = 0; i < rankings.size(); i++) {
             JLabel rankingLabel = new JLabel((i + 1) + ": " + rankings.get(i));
             rankingLabel.setFont(new Font("Serif", Font.PLAIN, 20));
@@ -120,5 +94,9 @@ public class Rankings extends JFrame {
         }
 
         return rankingPanel;
+    }
+
+    public static void main(String[] args) {
+        new Rankings();
     }
 }

@@ -78,8 +78,7 @@ public class MenuFrame extends JFrame {
         
         rankbutton.setBackground(Color.LIGHT_GRAY);
         rankbutton.addActionListener(e -> {
-            Rankings rank = new Rankings(currentUserName);
-            rank.showRankings();
+            new Rankings(currentUserName);
             this.setVisible(false);
         });
 

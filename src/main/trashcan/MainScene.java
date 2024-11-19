@@ -1,7 +1,6 @@
 package main.trashcan;
 
 import main.GameControlFrame;
-import main.ranking.Rankings;
 import main.scenes.ProfileScene;
 
 import javax.swing.*;
@@ -102,11 +101,6 @@ public class MainScene extends JFrame implements ActionListener {
 			GameControlFrame m = new GameControlFrame();
 			m.setupMainPanel("TEMP");
 			m.setVisible(true);
-			dispose();
-		}
-		if (e.getSource() == rankButton) {
-			Rankings rankings = new Rankings("");
-			rankings.showRankings();
 			dispose();
 		}
 	}

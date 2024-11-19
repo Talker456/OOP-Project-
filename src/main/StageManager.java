@@ -33,12 +33,6 @@ public class StageManager{
         }
     }
 
-    public void print() {
-        for (Stage stage : stages) {
-            stage.print();
-        }
-    }
-
     public int size() {
         return stages.size();
     }
