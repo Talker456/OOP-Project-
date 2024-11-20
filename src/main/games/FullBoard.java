@@ -9,13 +9,12 @@ public class FullBoard extends JPanel {
     GridBagConstraints gbc = new GridBagConstraints();
     GridBagLayout grid = new GridBagLayout();
 
-    static int DIFFICULTY_WEIGHT; // MOD
+    static int DIFFICULTY_WEIGHT;
     static double RATIO;
     Board board;
-    static Stage currentStage;
 
-    public void init(Stage stage,InGameFrame frame) {
-        currentStage = stage;
+    public void init(InGameFrame frame) {
+        Stage currentStage = InGameFrame.getCurrentStage();
         DIFFICULTY_WEIGHT = currentStage.getImage().length;
         RATIO = (double) DIFFICULTY_WEIGHT / (Math.round(DIFFICULTY_WEIGHT/2.0));
 
@@ -26,7 +25,7 @@ public class FullBoard extends JPanel {
         gbc.weighty = 1.0;
 
         board = new Board();
-        board.init(currentStage.getImage(),frame);
+        board.init(currentStage,frame);
 
         JPanel bottomRight = new JPanel();
         bottomRight.setBackground(Color.gray);

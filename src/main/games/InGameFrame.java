@@ -14,6 +14,7 @@ public class InGameFrame extends JFrame implements ActionListener {
 
     LeftPanel left;
     FullBoard fullBoard;
+    static Stage currentStage;
 
     public InGameFrame(Stage stage) {
         setTitle("NONOGRAMS");
@@ -21,12 +22,13 @@ public class InGameFrame extends JFrame implements ActionListener {
 
         left = new LeftPanel();
         fullBoard = new FullBoard();
+        currentStage = stage;
 
         setLayout(new BorderLayout());
 
         left.init();
         left.setEventHandler(this);
-        fullBoard.init(stage,this);
+        fullBoard.init(this);
 
         JPanel north = new JPanel();
         JButton back = new JButton("back");
@@ -63,14 +65,18 @@ public class InGameFrame extends JFrame implements ActionListener {
     public static void terminate(){
         System.out.println("terminated");
         String timeSpent = LeftPanel.getTime();
-        String difficulty = FullBoard.currentStage.getDifficulty();
-        String stageName = FullBoard.currentStage.getName();
+        String difficulty = currentStage.getDifficulty();
+        String stageName = currentStage.getName();
         String name = MainController.getCurrentUser();
         Record record = new Record(name, stageName, difficulty, timeSpent);
 
         MainController.writeRecord(record.toString());
         MainController.getRecordManager().addRecord(record);
 
+    }
+
+    public static Stage getCurrentStage() {
+        return currentStage;
     }
 
 }

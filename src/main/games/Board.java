@@ -1,7 +1,7 @@
 package main.games;
 
-import main.GameControlFrame;
 import main.StageSelectionFrame;
+import main.stage.Stage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,8 +17,12 @@ public class Board extends JPanel implements ActionListener {
     String[] stageCopy;
     static char[][] currentState;
     InGameFrame currentFrame;
+    Font font = new Font("Arial", Font.BOLD, 20);
+    static Stage currentStage;
 
-    void init(String[] img, InGameFrame frame) {
+    void init(Stage stage, InGameFrame frame) {
+        currentStage = stage;
+        String[] img = currentStage.getImage();
         size = img.length;
         cellPanel = new Pixel[size][size];
         stageCopy = Arrays.copyOf(img, img.length);
@@ -33,7 +37,7 @@ public class Board extends JPanel implements ActionListener {
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                cellPanel[i][j] = new Pixel(img[i].charAt(j),i,j);
+                cellPanel[i][j] = new Pixel(img[i].charAt(j), i, j);
                 cellPanel[i][j].setText("");
                 cellPanel[i][j].addActionListener(this);
                 cellPanel[i][j].setBorder(BorderFactory.createBevelBorder(0));
@@ -112,6 +116,20 @@ public class Board extends JPanel implements ActionListener {
 
     public void terminate() {
         InGameFrame.terminate();
+
+        JLabel label = new JLabel(currentStage.getName()+" CLEAR!");
+
+        label.setFont(font);
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+
+        JOptionPane optionPane = new JOptionPane(label, JOptionPane.PLAIN_MESSAGE);
+
+        JDialog dialog = optionPane.createDialog(currentFrame, "NOTICE");
+
+        dialog.setLocation(350, 300);
+
+        dialog.setVisible(true);
+
         currentFrame.dispose();
         new StageSelectionFrame();
     }
