@@ -48,6 +48,14 @@ public class Record{
         return LocalTime.parse(time);
     }
 
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
     @Override
     public String toString() {
         return username + " " + stageName + " " + difficulty + " " + time;

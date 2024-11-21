@@ -1,9 +1,10 @@
 package main.start;
 
+import main.MainController;
 import main.RealTimeClock;
 import main.StageSelectionFrame;
 import main.ranking.Rankings;
-import main.scenes.ProfileScene;
+import main.scenes.ProfileFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,7 +49,7 @@ public class MenuFrame extends JFrame {
         button1.setForeground(Color.WHITE);  // 글씨 색 설정
         button3.setForeground(Color.white);
         button3.addActionListener(e->{
-            ProfileScene p = new ProfileScene(currentUserName);
+            ProfileFrame p = new ProfileFrame(currentUserName, MainController.getRecordManager());
             p.setVisible(true);
             this.setVisible(false);
         });

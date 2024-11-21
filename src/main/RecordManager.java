@@ -18,12 +18,6 @@ public class RecordManager {
         }
     }
 
-    public void print() {
-        for (Record record : records) {
-            record.print();
-        }
-    }
-
     public ArrayList<Record> getUserRecord(String username) {
         return records.stream()
                .filter(record -> record.getUsername().equals(username))
