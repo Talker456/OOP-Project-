@@ -30,8 +30,9 @@ public class Rankings extends JFrame {
         JButton backButton = new JButton("back");
         backButton.setSize(50, HEIGHT);
         setButtonStyle(backButton);
-        backButton.addActionListener(e->{
+        backButton.addActionListener(e -> {
             new MenuFrame(username);
+            dispose();
         });
 
         JPanel bottomPanel = new JPanel();
