@@ -4,7 +4,7 @@ import main.MainController;
 import main.RealTimeClock;
 import main.StageSelectionFrame;
 import main.ranking.Rankings;
-import main.scenes.ProfileFrame;
+import main.profile.ProfileFrame;
 
 import javax.swing.*;
 import java.awt.*;
