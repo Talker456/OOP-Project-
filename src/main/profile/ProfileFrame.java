@@ -112,10 +112,10 @@ public class ProfileFrame extends JFrame implements ActionListener {
         bottomPanel.setBackground(new Color(35, 35, 35));
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
-        JLabel clockLabel = new JLabel("2024-11-21 11:08:40", SwingConstants.CENTER); // Placeholder for the clock
-        clockLabel.setForeground(Color.WHITE);
-        clockLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-        bottomPanel.add(clockLabel);
+//        JLabel clockLabel = new JLabel("2024-11-21 11:08:40", SwingConstants.CENTER); // Placeholder for the clock
+//        clockLabel.setForeground(Color.WHITE);
+//        clockLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+//        bottomPanel.add(clockLabel);
 
         JLabel nonogramsLabel = new JLabel("NONOGRAMS", SwingConstants.CENTER);
         nonogramsLabel.setForeground(Color.WHITE);
