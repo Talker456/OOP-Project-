@@ -4,7 +4,7 @@ import main.MainController;
 import main.RealTimeClock;
 import main.StageSelectionFrame;
 import main.ranking.Rankings;
-import main.scenes.ProfileFrame;
+import main.profile.ProfileFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -80,6 +80,7 @@ public class MenuFrame extends JFrame {
         rankbutton.setBackground(Color.LIGHT_GRAY);
         rankbutton.addActionListener(e -> {
             new Rankings(currentUserName);
+            dispose();
             this.setVisible(false);
         });
 

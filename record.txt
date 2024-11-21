@@ -6,3 +6,4 @@ resign Level3 Easy 00:00:14
 frad Level1 Easy 00:00:02
 kjliii Level1 Easy 00:00:01
 kjliii Level2 Easy 00:00:04
+hello Level1 Easy 00:00:01

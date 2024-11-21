@@ -1,4 +1,4 @@
-package main.scenes;
+package main.profile;
 
 import main.start.MenuFrame;
 import main.RecordManager;

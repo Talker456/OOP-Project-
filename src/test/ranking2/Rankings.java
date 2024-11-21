@@ -1,4 +1,4 @@
-package main.ranking;
+package test.ranking2;
 
 import main.MainController;
 import main.RealTimeClock;
@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Rankings extends JFrame {
@@ -131,5 +132,9 @@ public class Rankings extends JFrame {
         }
 
         return rankingPanel;
+    }
+
+    public static void main(String[] args) {
+        new Rankings("user1");
     }
 }
