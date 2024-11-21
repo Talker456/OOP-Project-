@@ -20,13 +20,15 @@ public class StageSelectionFrame extends JFrame {
 
         setLayout(new BorderLayout());
 
-        JButton west = new JButton("WEST");
-        west.setFont(font);
-        west.setEnabled(false);
-        west.setSize(50,HEIGHT);
-
-//        JPanel top = new JPanel();
-//        setTopPanel(top);
+        JButton back = new JButton("Back");
+        back.setFont(font);
+        back.setBackground(Color.darkGray);
+        back.setForeground(Color.white);
+        back.setSize(50,HEIGHT);
+        back.addActionListener(e->{
+            new MenuFrame(MainController.getCurrentUser());
+            dispose();
+        });
 
         JPanel bottom = new JPanel();
         setBottomPanel(bottom);
@@ -35,7 +37,7 @@ public class StageSelectionFrame extends JFrame {
         center.init(this);
 
 //        c.add(top,BorderLayout.PAGE_START);
-        c.add(west, BorderLayout.WEST);
+        c.add(back, BorderLayout.WEST);
         c.add(center,BorderLayout.CENTER);
         c.add(bottom,BorderLayout.PAGE_END);
 
@@ -58,18 +60,15 @@ public class StageSelectionFrame extends JFrame {
         bottomButton2.setEnabled(false);
         bottomButton2.setBackground(Color.darkGray);
 
-        JButton backButton = new JButton("back");
-        backButton.setFont(font);
-        backButton.setForeground(Color.white);
-        backButton.setBackground(Color.darkGray);
-        backButton.addActionListener(e->{
-            new MenuFrame(MainController.getCurrentUser()); // username!!!
-            this.dispose();
-        });
+        JButton bottomButton3 = new JButton("STAGES");
+        bottomButton3.setFont(font);
+        bottomButton3.setForeground(Color.white);
+        bottomButton3.setBackground(Color.darkGray);
+        bottomButton3.setEnabled(false);
 
         bottom.add(bottomButton1);
         bottom.add(bottomButton2);
-        bottom.add(backButton);
+        bottom.add(bottomButton3);
     }
 
     private void setTopPanel(JPanel top) {

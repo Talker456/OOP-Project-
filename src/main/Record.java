@@ -50,6 +50,6 @@ public class Record{
 
     @Override
     public String toString() {
-        return username + " " + stageName + " " + difficulty + " " + time+"\n";
+        return username + " " + stageName + " " + difficulty + " " + time;
     }
 }

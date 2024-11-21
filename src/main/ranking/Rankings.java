@@ -55,6 +55,7 @@ public class Rankings extends JFrame {
         bottomPanel.add(bottomButton1);
         bottomPanel.add(bottomButton2);
         bottomPanel.add(bottomButton3);
+        bottomPanel.setPreferredSize(new Dimension(WIDTH, 50));
     }
 
     private void setButtonStyle(JButton jButton) {

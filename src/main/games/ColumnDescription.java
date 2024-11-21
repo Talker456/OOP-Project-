@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ColumnDescription extends JPanel{
+    private float fontSize;
 
     void init(int rows,int cols,String[] img) {
         setLayout(new GridLayout(cols, 1));
+        setFontSize(img.length);
 
         for (int i = 0; i < cols; i++) {
             JPanel row = new JPanel();
@@ -36,8 +38,9 @@ public class ColumnDescription extends JPanel{
                 JLabel tmpLabel = new JLabel();
                 String string = array.length <= j ? "" : array[j];
                 tmpLabel.setText(string);
-                tmpLabel.setFont(tmpLabel.getFont().deriveFont(10.0f));
-                tmpLabel.setVerticalTextPosition(SwingConstants.CENTER);
+                tmpLabel.setFont(tmpLabel.getFont().deriveFont(fontSize));
+                tmpLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
+                tmpLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
                 tmp.add(tmpLabel);
                 row.add(tmp);
@@ -47,5 +50,21 @@ public class ColumnDescription extends JPanel{
         }
     }
 
+    public void setFontSize(int length) {
+        switch (length) {
+            case 5:
+                fontSize=20.0f;
+                break;
+            case 10:
+                fontSize = 15.0f;
+                break;
+            case 15:
+                fontSize=10.0f;
+                break;
+            default:
+                System.out.println("Wrong image length");
+                break;
+        }
+    }
 
 }

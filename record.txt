@@ -4,26 +4,5 @@ resign Level1 Easy 00:00:14
 resign Level2 Easy 00:00:14
 resign Level3 Easy 00:00:14
 frad Level1 Easy 00:00:02
-
-player1 Level1 Easy 00:00:01
-
-post Level1 Easy 00:00:02
-
-post2 Level1 Easy 00:00:01
-
-postse Level1 Easy 00:00:01
-
-poppo Level1 Easy 00:00:01
-
-kjiu Level1 Easy 00:00:01
-
-kjkjkj Level1 Easy 00:00:01
-
-Tom Level1 Easy 00:00:01
-
-kjftyfy Level1 Easy 00:00:01
-
-kjftyfy Level2 Easy 00:00:09
-
-lokik Level1 Easy 00:00:01
-
+kjliii Level1 Easy 00:00:01
+kjliii Level2 Easy 00:00:04

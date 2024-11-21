@@ -1,6 +1,7 @@
 package main.games;
 
 
+import main.MainController;
 import test.rankingtest.alternate;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ public class LeftPanel extends JPanel implements ActionListener {
     JButton hintButton = new JButton();
 
     static ClockComponent clock = new ClockComponent();
+    Font font = new Font("Arial", Font.BOLD, 20);
 
     public void init() {
         this.setLayout(new GridLayout(3, 1));
@@ -26,14 +28,21 @@ public class LeftPanel extends JPanel implements ActionListener {
         clock.clearClock();
         clearHint();
 
-        JLabel userLabel = new JLabel("user : "+ alternate.getCurrentUser());
+        JLabel userLabel = new JLabel("User : "+ MainController.getCurrentUser());
         userLabel.setHorizontalAlignment(SwingConstants.CENTER);
         userLabel.setFont(userLabel.getFont().deriveFont(24.0f));
 
         JPanel bottomPanel = new JPanel(new GridLayout(1, 2));
 
         modButton.addActionListener(this);
+        modButton.setBackground(Color.darkGray);
+        modButton.setForeground(Color.white);
+        modButton.setFont(font);
+
         hintButton.setText(setHintButtonText());
+        hintButton.setBackground(Color.darkGray);
+        hintButton.setForeground(Color.white);
+        hintButton.setFont(font);
 
         bottomPanel.add(modButton);
         bottomPanel.add(hintButton);

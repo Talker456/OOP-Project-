@@ -15,6 +15,7 @@ public class InGameFrame extends JFrame implements ActionListener {
     LeftPanel left;
     FullBoard fullBoard;
     static Stage currentStage;
+    Font font = new Font("Arial", Font.BOLD, 20);
 
     public InGameFrame(Stage stage) {
         setTitle("NONOGRAMS");
@@ -35,6 +36,7 @@ public class InGameFrame extends JFrame implements ActionListener {
         back.addActionListener(e-> new StageSelectionFrame());
         north.add(back);
         north.setPreferredSize(new Dimension(WIDTH,50));
+
         JPanel right = new JPanel();
         right.setPreferredSize(new Dimension(50,HEIGHT));
         JPanel south = new JPanel();

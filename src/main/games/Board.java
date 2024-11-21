@@ -118,16 +118,12 @@ public class Board extends JPanel implements ActionListener {
         InGameFrame.terminate();
 
         JLabel label = new JLabel(currentStage.getName()+" CLEAR!");
-
         label.setFont(font);
         label.setHorizontalAlignment(SwingConstants.CENTER);
 
         JOptionPane optionPane = new JOptionPane(label, JOptionPane.PLAIN_MESSAGE);
-
         JDialog dialog = optionPane.createDialog(currentFrame, "NOTICE");
-
         dialog.setLocation(350, 300);
-
         dialog.setVisible(true);
 
         currentFrame.dispose();
