@@ -33,7 +33,10 @@ public class InGameFrame extends JFrame implements ActionListener {
 
         JPanel north = new JPanel();
         JButton back = new JButton("back");
-        back.addActionListener(e-> new StageSelectionFrame());
+        back.addActionListener(e -> {
+            new StageSelectionFrame();
+            dispose();
+        });
         north.add(back);
         north.setPreferredSize(new Dimension(WIDTH,50));
 
