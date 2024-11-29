@@ -8,7 +8,6 @@ import java.util.Arrays;
 public class RowDescription extends JPanel{
 
     private float fontSize;
-
     void init(int rows, int cols, String[] img) {
 
         setLayout(new GridLayout(1, cols));
