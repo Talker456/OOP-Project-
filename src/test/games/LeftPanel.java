@@ -1,5 +1,7 @@
-package main.games;
+package test.games;
 
+
+import test.MainController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,41 +21,34 @@ public class LeftPanel extends JPanel implements ActionListener {
     Font font = new Font("Arial", Font.BOLD, 20);
 
     public void init() {
-        setLayout(new GridLayout(4, 1));
-        this.setPreferredSize(new Dimension(200, HEIGHT));
+        this.setLayout(new GridLayout(3, 1));
+        this.setPreferredSize(new Dimension(200, 700));
 
         clock.clearClock();
         clearHint();
 
+        JLabel userLabel = new JLabel("User : "+ MainController.getCurrentUser());
+        userLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        userLabel.setFont(userLabel.getFont().deriveFont(24.0f));
 
         JPanel bottomPanel = new JPanel(new GridLayout(1, 2));
 
-        JPanel modButtonPanel = new JPanel();
-        modButtonPanel.setLayout(new BorderLayout());
         modButton.addActionListener(this);
         modButton.setBackground(Color.darkGray);
         modButton.setForeground(Color.white);
         modButton.setFont(font);
-        setButtonMargin(modButtonPanel,modButton,30);
 
-        JPanel hintButtonPanel = new JPanel();
-        hintButtonPanel.setLayout(new BorderLayout());
         hintButton.setText(setHintButtonText());
         hintButton.setBackground(Color.darkGray);
         hintButton.setForeground(Color.white);
         hintButton.setFont(font);
-        setButtonMargin(hintButtonPanel,hintButton,30);
 
-        bottomPanel.add(modButtonPanel);
-        bottomPanel.add(hintButtonPanel);
+        bottomPanel.add(modButton);
+        bottomPanel.add(hintButton);
 
-//        this.add(clock, BorderLayout.CENTER);
-//        this.add(userLabel, BorderLayout.CENTER);
-//        this.add(bottomPanel, BorderLayout.LINE_END);
-
-        add(clock);
-        add(hintButtonPanel);
-        add(modButtonPanel);
+        this.add(clock, BorderLayout.CENTER);
+        this.add(userLabel, BorderLayout.CENTER);
+        this.add(bottomPanel, BorderLayout.LINE_END);
 
     }
 
@@ -82,8 +77,12 @@ public class LeftPanel extends JPanel implements ActionListener {
         hintButton.setText(setHintButtonText());
     }
 
+//    public static int getHintLeft() {
+//        return hintLeft;
+//    }
+
     public static String getTime() {
-        return ClockComponent.localTime.toString();
+        return ClockComponent.t.toString();
     }
 
     public void setEventHandler(ActionListener actionListener) {
@@ -92,31 +91,5 @@ public class LeftPanel extends JPanel implements ActionListener {
 
     public static void clearHint() {
         hintLeft = 3;
-    }
-
-    private void setButtonMargin(JPanel panel, JButton button,int margin) {
-        JPanel marginTop = new JPanel();
-        JPanel marginBottom = new JPanel();
-        JPanel marginLeft = new JPanel();
-        JPanel marginRight = new JPanel();
-
-        marginTop.setPreferredSize(new Dimension(WIDTH, margin));
-        marginBottom.setPreferredSize(new Dimension(WIDTH, margin));
-        marginLeft.setPreferredSize(new Dimension(margin, HEIGHT));
-        marginRight.setPreferredSize(new Dimension(margin, HEIGHT));
-
-        panel.add(marginTop, BorderLayout.NORTH);
-        panel.add(marginBottom, BorderLayout.SOUTH);
-        panel.add(marginLeft, BorderLayout.WEST);
-        panel.add(marginRight, BorderLayout.EAST);
-        panel.add(button, BorderLayout.CENTER);
-    }
-
-    public static void pauseClock() {
-        clock.pause();
-    }
-
-    public static void resumeClock() {
-        clock.resume();
     }
 }

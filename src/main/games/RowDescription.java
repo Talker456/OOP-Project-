@@ -71,13 +71,13 @@ public class RowDescription extends JPanel{
     public void setFontSize(int length) {
         switch (length) {
             case 5:
-                fontSize=20.0f;
+                fontSize=30.0f;
                 break;
             case 10:
-                fontSize = 15.0f;
+                fontSize = 25.0f;
                 break;
             case 15:
-                fontSize=10.0f;
+                fontSize=15.0f;
                 break;
             default:
                 System.out.println("Wrong image length");

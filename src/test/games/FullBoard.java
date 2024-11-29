@@ -1,4 +1,4 @@
-package main.games;
+package test.games;
 
 import test.stage.Stage;
 
@@ -13,8 +13,8 @@ public class FullBoard extends JPanel {
     static double RATIO;
     Board board;
 
-    public void init() {
-        Stage currentStage = GamePanel.getCurrentStage();
+    public void init(InGameFrame frame) {
+        Stage currentStage = InGameFrame.getCurrentStage();
         DIFFICULTY_WEIGHT = currentStage.getImage().length;
         RATIO = (double) DIFFICULTY_WEIGHT / (Math.round(DIFFICULTY_WEIGHT/2.0));
 
@@ -25,7 +25,7 @@ public class FullBoard extends JPanel {
         gbc.weighty = 1.0;
 
         board = new Board();
-        board.init(currentStage);
+        board.init(currentStage,frame);
 
         JPanel bottomRight = new JPanel();
         bottomRight.setBackground(Color.gray);

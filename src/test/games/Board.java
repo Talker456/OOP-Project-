@@ -1,8 +1,7 @@
-package main.games;
+package test.games;
 
+import test.StageSelectionFrame;
 import test.stage.Stage;
-import main.MainFrame;
-import main.StageSelectionPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,16 +16,18 @@ public class Board extends JPanel implements ActionListener {
     static boolean state=true;
     String[] stageCopy;
     static char[][] currentState;
+    InGameFrame currentFrame;
     Font font = new Font("Arial", Font.BOLD, 20);
     static Stage currentStage;
 
-    void init(Stage stage) {
+    void init(Stage stage, InGameFrame frame) {
         currentStage = stage;
         String[] img = currentStage.getImage();
         size = img.length;
         cellPanel = new Pixel[size][size];
         stageCopy = Arrays.copyOf(img, img.length);
         currentState = new char[img.length][img.length];
+        currentFrame = frame;
 
         for (char[] chars : currentState) {
             Arrays.fill(chars, '0');
@@ -114,69 +115,34 @@ public class Board extends JPanel implements ActionListener {
     }
 
     public void terminate() {
-        GamePanel.terminate();
-
-        //get current frame for showing dialog
-        JFrame currentFrame=null;
-        Window window = SwingUtilities.getWindowAncestor(cellPanel[0][0]);
-        if (window instanceof JFrame) {
-            currentFrame = (JFrame) window;
-            System.out.println("Current Frame Title: " + currentFrame.getTitle());
-        }
+        InGameFrame.terminate();
 
         JLabel label = new JLabel(currentStage.getName()+" CLEAR!");
         label.setFont(font);
         label.setHorizontalAlignment(SwingConstants.CENTER);
-
 
         JOptionPane optionPane = new JOptionPane(label, JOptionPane.PLAIN_MESSAGE);
         JDialog dialog = optionPane.createDialog(currentFrame, "NOTICE");
         dialog.setLocation(350, 300);
         dialog.setVisible(true);
 
-        StageSelectionPanel stageSelectionPanel = new StageSelectionPanel();
-        MainFrame.getCardPanel().add(stageSelectionPanel, "select");
-        MainFrame.getCardLayout().show(MainFrame.getCardPanel(),"select");
-
+        currentFrame.dispose();
+        new StageSelectionFrame();
     }
 
     public void hintCall() {
         Random r = new Random();
         int x,y;
-        int count = 0;
 
-        String difficulty = currentStage.getDifficulty();
-        switch (difficulty) {
-            case "Easy":
-                count = 1;
-                break;
-            case "Normal":
-                count = 4;
-                break;
-            case "Hard":
-                count = 8;
-                break;
-        }
+        do {
+            x = r.nextInt(size);
+            y = r.nextInt(size);
+        } while (currentState[x][y] == '1' || !cellPanel[x][y].isCell );
 
-        for (int i = 0; i < count; i++) {
-            do {
-                x = r.nextInt(size);
-                y = r.nextInt(size);
-            } while (currentState[x][y] == '1' || !cellPanel[x][y].getText().isEmpty() );
-
-            if (cellPanel[x][y].isCell) {
-                cellPanel[x][y].setBackground(Color.darkGray);
-                currentState[x][y] = '1';
-            }else{
-                cellPanel[x][y].setBackground(Color.lightGray);
-                cellPanel[x][y].setButtonText("X");
-                currentState[x][y] = '0';
-            }
-
-
-            if (checkCleared()) {
-                terminate();
-            }
+        cellPanel[x][y].setBackground(Color.darkGray);
+        currentState[x][y] = '1';
+        if (checkCleared()) {
+            terminate();
         }
     }
 }

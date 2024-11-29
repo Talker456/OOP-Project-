@@ -4,6 +4,14 @@ resign Level1 Easy 00:00:14
 resign Level2 Easy 00:00:14
 resign Level3 Easy 00:00:14
 frad Level1 Easy 00:00:02
-kjliii Level1 Easy 00:00:01
 kjliii Level2 Easy 00:00:04
 hello Level1 Easy 00:00:01
+null Level1 Easy 00:00:02
+null Level1 Easy 00:00:02
+null Level1 Easy 00:00:01
+fko Level1 Easy 00:00:02
+fko Level2 Easy 00:00:05
+kkkl Level1 Easy 00:00:08
+dfs Level1 Easy 00:00:01
+lkjlj Level1 Easy 00:00:01
+resign Level4 Easy 00:00:24

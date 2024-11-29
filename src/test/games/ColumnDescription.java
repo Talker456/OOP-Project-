@@ -1,4 +1,4 @@
-package main.games;
+package test.games;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,13 +53,13 @@ public class ColumnDescription extends JPanel{
     public void setFontSize(int length) {
         switch (length) {
             case 5:
-                fontSize=30.0f;
+                fontSize=20.0f;
                 break;
             case 10:
-                fontSize = 25.0f;
+                fontSize = 15.0f;
                 break;
             case 15:
-                fontSize=15.0f;
+                fontSize=10.0f;
                 break;
             default:
                 System.out.println("Wrong image length");

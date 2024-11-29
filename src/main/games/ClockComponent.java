@@ -1,24 +1,22 @@
 package main.games;
 
-import java.awt.Dimension;
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Time;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Calendar;
-
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.Timer;
 
 @SuppressWarnings("serial")
 public class ClockComponent extends JLabel {
+
+
+    static LocalTime localTime;
+    Timer t;
+
     ClockComponent() {
         super("", SwingConstants.CENTER);
-        t = LocalTime.of(0, 0, 0);
-        Timer t = new Timer(1000, new ActionListener() {
+        localTime = LocalTime.of(0, 0, 0);
+        t = new Timer(1000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 setText(getTimeString());
             }
@@ -28,27 +26,24 @@ public class ClockComponent extends JLabel {
     }
 
     public  void clearClock() {
-        t = LocalTime.of(0, 0, 0);
+        localTime = LocalTime.of(0, 0, 0);
     }
 
-//    String getTimeString() {
-//        int hour, minute, second;
-//        Calendar rite = Calendar.getInstance();
-//        hour = rite.get(Calendar.HOUR);
-//        minute = rite.get(Calendar.MINUTE);
-//        second = rite.get(Calendar.SECOND);
-//        return String.format("%02d:%02d:%02d", hour, minute, second);
-//    }
-
-    static LocalTime t;
-
     static String getTimeString() {
-        t = t.plusSeconds(1);
-        return t.toString();
+        localTime = localTime.plusSeconds(1);
+        return localTime.toString();
     }
 
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(100, 50);
+    }
+
+    public void pause() {
+        t.stop();
+    }
+
+    public void resume() {
+        t.start();
     }
 }
