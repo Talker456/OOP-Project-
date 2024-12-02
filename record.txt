@@ -15,3 +15,4 @@ kkkl Level1 Easy 00:00:08
 dfs Level1 Easy 00:00:01
 lkjlj Level1 Easy 00:00:01
 resign Level4 Easy 00:00:24
+resign Level1 Easy 00:00:06

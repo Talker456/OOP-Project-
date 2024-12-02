@@ -1,63 +1,89 @@
 package main;
 
 import main.start_menu.MenuPanel;
+import main.start_menu.RealTimeClock;
 import main.start_menu.StageSelectionCenter;
-import test.RealTimeClock;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Date;
 
 public class StageSelectionPanel extends JPanel {
 
     StageSelectionCenter center;
 
     public StageSelectionPanel(){
-        JPanel cardPanel = MainFrame.getCardPanel();
-        CardLayout cardLayout = MainFrame.getCardLayout();
-
         setLayout(new BorderLayout());
 
-
-        JButton backButton = new JButton("back");
-        backButton.setSize(50, HEIGHT);
-        Decorator.setButtonStyle(backButton,20);
+        JPanel topPanel = new JPanel();
+        setTopPanel(topPanel);
 
         JPanel bottomPanel = new JPanel();
         setBottomPanel(bottomPanel);
 
-
-        backButton.addActionListener(e -> {
-            MenuPanel loginPanel = new MenuPanel();
-            cardPanel.add(loginPanel,"menu");
-            cardLayout.show(cardPanel, "menu");
-        });
-
         center = new StageSelectionCenter();
         center.init();
-        add(backButton, BorderLayout.WEST);
+
+        add(topPanel, BorderLayout.NORTH);
         add(center, BorderLayout.CENTER);
-        add(bottomPanel, BorderLayout.PAGE_END);
+        add(bottomPanel, BorderLayout.SOUTH);
     }
 
     private void setBottomPanel(JPanel bottomPanel) {
         bottomPanel.setLayout(new GridLayout(1, 3));
-        JButton bottomButton1 = new JButton();
-        bottomButton1.setEnabled(false);
-        RealTimeClock clock = new RealTimeClock(bottomButton1);
+        bottomPanel.setBackground(new Color(35, 35, 35));
+        bottomPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+
+        JLabel clockLabel = new JLabel("2024:12:05 13:32:08", SwingConstants.CENTER); // Placeholder for the clock
+        clockLabel.setForeground(Color.WHITE);
+        clockLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+        RealTimeClock clock = new RealTimeClock(clockLabel);
         clock.startClock();
-        JButton bottomButton2 = new JButton("NONOGRAMs");
-        bottomButton2.setForeground(Color.lightGray);
-        bottomButton2.setFont(Decorator.DEFAULT_FONT);
-        bottomButton2.setEnabled(false);
-        bottomButton2.setBackground(Color.darkGray);
-        JButton bottomButton3 = new JButton("RANKING");
-        bottomButton3.setEnabled(false);
-        Decorator.setButtonStyle(bottomButton1,20);
-        Decorator.setButtonStyle(bottomButton2,20);
-        Decorator.setButtonStyle(bottomButton3,20);
-        bottomPanel.add(bottomButton1);
-        bottomPanel.add(bottomButton2);
-        bottomPanel.add(bottomButton3);
-        bottomPanel.setPreferredSize(new Dimension(WIDTH, 50));
+        bottomPanel.add(clockLabel);
+
+        JLabel nonogramsLabel = new JLabel("NONOGRAMS", SwingConstants.CENTER);
+        nonogramsLabel.setForeground(Color.WHITE);
+        nonogramsLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        bottomPanel.add(nonogramsLabel);
+
+        JLabel myPageLabel = new JLabel(MainFrame.getCurrentUser(), SwingConstants.CENTER);
+        myPageLabel.setForeground(new Color(255, 215, 0)); // Golden color for better emphasis
+        myPageLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        bottomPanel.add(myPageLabel);
     }
+
+    private void setTopPanel(JPanel topPanel) {
+        topPanel.setLayout(new BorderLayout());
+
+        JPanel upperPanel = new JPanel();
+        upperPanel.setLayout(new BorderLayout());
+        upperPanel.setBackground(new Color(35, 35, 35));
+        upperPanel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createMatteBorder(0, 0, 5, 0, new Color(70, 130, 180)),
+                BorderFactory.createEmptyBorder(10, 20, 10, 20)));
+
+        JButton pauseButton = new JButton("Back");
+        pauseButton.setPreferredSize(new Dimension(120, 50));
+        pauseButton.setBackground(new Color(70, 130, 180));
+        pauseButton.setForeground(Color.WHITE);
+        pauseButton.setFont(new Font("Arial", Font.BOLD, 20));
+        pauseButton.setFocusPainted(false);
+        pauseButton.addActionListener(e->{
+            MenuPanel menu = new MenuPanel();
+            JPanel cardPanel = MainFrame.getCardPanel();
+            cardPanel.add(menu, "menu");
+            MainFrame.getCardLayout().show(cardPanel,"menu");
+        });
+        upperPanel.add(pauseButton, BorderLayout.WEST);
+
+        JLabel titleLabel = new JLabel("Select Stage", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 40));
+        titleLabel.setForeground(new Color(255, 215, 0));
+        upperPanel.add(titleLabel, BorderLayout.CENTER);
+
+
+        topPanel.add(upperPanel, BorderLayout.CENTER);
+
+    }
+
 }

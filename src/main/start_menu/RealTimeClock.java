@@ -5,10 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class RealTimeClock {
-    private JButton timeLabel;
+    private JLabel timeLabel;
+    Timer timer;
 
-    public RealTimeClock(JButton button1) {
-        this.timeLabel = button1;
+    public RealTimeClock(JLabel label) {
+        this.timeLabel = label;
     }
 
     public void startClock() {
@@ -22,5 +23,6 @@ public class RealTimeClock {
 
         timer.start();  // 타이머 시작
     }
+
 }
 

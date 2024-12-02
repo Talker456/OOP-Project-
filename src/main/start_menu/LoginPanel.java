@@ -37,6 +37,7 @@ public class LoginPanel extends JPanel {
 
 
         startPanel.setLayout(new BoxLayout(startPanel, BoxLayout.Y_AXIS));
+        startPanel.setPreferredSize(new Dimension(WIDTH,850));
         startPanel.add(Box.createVerticalGlue());
         startPanel.add(titleLabel);
         startPanel.add(Box.createRigidArea(new Dimension(0, 15)));
@@ -72,9 +73,12 @@ public class LoginPanel extends JPanel {
     public class BackgroundPanel extends JPanel {
         private Image backgroundImage;
 
+
+
         public BackgroundPanel(String imagePath) {
 
             backgroundImage = new ImageIcon(getClass().getResource(imagePath)).getImage();
+
         }
 
         @Override

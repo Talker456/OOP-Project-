@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class MainFrame extends JFrame {
+    private static MainFrame instance;
 
     static StageManager stageManager = new StageManager();
     static RecordManager recordManager = new RecordManager();
@@ -40,13 +41,20 @@ public class MainFrame extends JFrame {
         }
     }
 
-    public void setMainFrame() {
+    private MainFrame() {
         setTitle("NONOGRAMS");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+    }
+
+    public void setMainFrame() {
         setLayout(new BorderLayout());
 
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
+
+        stageManager.readAllStages(openFile("stage.txt"));
+        recordManager.readAllRecord(openFile("record.txt"));
 
         loginPanel = new LoginPanel();
 
@@ -56,14 +64,6 @@ public class MainFrame extends JFrame {
 
         setSize(1000,850);
         setVisible(true);
-    }
-
-
-    void start() {
-        stageManager.readAllStages(openFile("stage.txt"));
-        recordManager.readAllRecord(openFile("record.txt"));
-
-        new MainFrame().setMainFrame();
     }
 
     public static RecordManager getRecordManager() {
@@ -100,8 +100,16 @@ public class MainFrame extends JFrame {
         } return null;
     }
 
+    public static MainFrame getInstance() {
+        if (instance == null) {
+            instance = new MainFrame();
+        }
+        return instance;
+    }
+
+
     public static void main(String[] args) {
-        MainFrame main = new MainFrame();
-        main.start();
+        MainFrame main = MainFrame.getInstance();
+        main.setMainFrame();
     }
 }

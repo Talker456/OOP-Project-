@@ -6,8 +6,7 @@ import main.StageSelectionPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -39,6 +38,7 @@ public class Board extends JPanel implements ActionListener {
                 cellPanel[i][j] = new Pixel(img[i].charAt(j), i, j);
                 cellPanel[i][j].setText("");
                 cellPanel[i][j].addActionListener(this);
+                cellPanel[i][j].addMouseListener(adapter);
                 cellPanel[i][j].setBorder(BorderFactory.createBevelBorder(0));
                 add(cellPanel[i][j]);
             }
@@ -52,6 +52,33 @@ public class Board extends JPanel implements ActionListener {
         Pixel p = (Pixel) e.getSource();
         selected = p;
 
+        buttonEvent(p);
+    }
+
+
+    private static final MouseAdapter adapter = new MouseAdapter() {
+
+        boolean mouseDown = false;
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            if(mouseDown)
+                ((JButton) e.getSource()).doClick();
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            ((JButton) e.getSource()).doClick(); // Click the initial button
+            mouseDown = true;
+        }
+
+        public void mouseReleased(MouseEvent e) {
+            mouseDown = false;
+        }
+    };
+
+
+    private void buttonEvent(Pixel p) {
         if (p.isEmpty() && p.buttonText.isEmpty()) {
             if (state) {
                 p.setBackground(Color.darkGray);
@@ -130,7 +157,7 @@ public class Board extends JPanel implements ActionListener {
 
 
         JOptionPane optionPane = new JOptionPane(label, JOptionPane.PLAIN_MESSAGE);
-        JDialog dialog = optionPane.createDialog(currentFrame, "NOTICE");
+        JDialog dialog = optionPane.createDialog(MainFrame.getInstance(), "NOTICE");
         dialog.setLocation(350, 300);
         dialog.setVisible(true);
 

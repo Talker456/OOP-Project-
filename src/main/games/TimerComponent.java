@@ -7,13 +7,13 @@ import java.awt.event.ActionListener;
 import java.time.LocalTime;
 
 @SuppressWarnings("serial")
-public class ClockComponent extends JLabel {
+public class TimerComponent extends JLabel {
 
 
     static LocalTime localTime;
     Timer t;
 
-    ClockComponent() {
+    TimerComponent() {
         super("", SwingConstants.CENTER);
         localTime = LocalTime.of(0, 0, 0);
         t = new Timer(1000, new ActionListener() {

@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ProfilePanel extends JPanel implements ActionListener {
+public class ProfilePanel extends JPanel {
     JButton undoButton;
     JLabel resultLabel;
     static String currentUser;
@@ -130,26 +130,5 @@ public class ProfilePanel extends JPanel implements ActionListener {
         bottomPanel.add(myPageLabel);
 
         add(bottomPanel, BorderLayout.SOUTH);
-    }
-
-    public static void main(String[] args) {
-        // Example usage with dummy RecordManager
-        RecordManager recordManager = new RecordManager();
-        JFrame frame = new JFrame("Profile Panel");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new ProfilePanel("username", recordManager));
-        frame.pack();
-        frame.setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == undoButton) {
-            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(new MenuFrame(currentUser));
-            frame.revalidate();
-            frame.repaint();
-        }
     }
 }

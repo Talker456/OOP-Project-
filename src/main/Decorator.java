@@ -15,4 +15,6 @@ public class Decorator {
     private static Font getFontWithSize(int size) {
         return new Font("Arial", Font.BOLD, size);
     }
+
+
 }

@@ -2,6 +2,7 @@ package main.games;
 
 import main.Decorator;
 import main.StageSelectionPanel;
+import main.start_menu.MenuPanel;
 import test.Record;
 import test.stage.Stage;
 import main.MainFrame;
@@ -28,8 +29,8 @@ public class GamePanel extends JPanel implements ActionListener {
         left.setEventHandler(this);
         fullBoard.init();
 
-        JPanel north = new JPanel();
-        setNorthPanel(north);
+        JPanel topPanel = new JPanel();
+        setTopPanel(topPanel);
 
         JPanel right = new JPanel();
         right.setPreferredSize(new Dimension(130,HEIGHT));
@@ -37,47 +38,48 @@ public class GamePanel extends JPanel implements ActionListener {
         south.setPreferredSize(new Dimension(WIDTH,50));
 
         this.add(left, BorderLayout.WEST);
-        this.add(north, BorderLayout.PAGE_START);
+        this.add(topPanel, BorderLayout.PAGE_START);
         this.add(fullBoard,BorderLayout.CENTER);
         this.add(right, BorderLayout.LINE_END);
         this.add(south, BorderLayout.PAGE_END);
 
     }
 
-    private void setNorthPanel(JPanel north) {
-        north.setLayout(new BorderLayout());
-        JPanel northUpper = new JPanel(new GridLayout());
+    private void setTopPanel(JPanel topPanel) {
+        topPanel.setLayout(new BorderLayout());
 
-        JButton pause = new JButton("Pause");
-        Decorator.setButtonStyle(pause,40);
+        JPanel upperPanel = new JPanel();
+        upperPanel.setLayout(new BorderLayout());
+        upperPanel.setBackground(new Color(35, 35, 35));
+        upperPanel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createMatteBorder(0, 0, 5, 0, new Color(70, 130, 180)),
+                BorderFactory.createEmptyBorder(10, 20, 10, 20)));
 
-
-        pause.addActionListener(e -> {
+        JButton pauseButton = new JButton("Pause");
+        pauseButton.setPreferredSize(new Dimension(120, 50));
+        pauseButton.setBackground(new Color(70, 130, 180));
+        pauseButton.setForeground(Color.WHITE);
+        pauseButton.setFont(new Font("Arial", Font.BOLD, 20));
+        pauseButton.setFocusPainted(false);
+        pauseButton.addActionListener(e->{
             JDialog pauseDialog = createPauseDialog(e);
             pauseDialog.setVisible(true);
         });
+        upperPanel.add(pauseButton, BorderLayout.WEST);
 
-        JButton center = new JButton(currentStage.getName());
-        Decorator.setButtonStyle(center,40);
-        center.setEnabled(false);
-
-        JButton rightButton = new JButton("Right");
-        Decorator.setButtonStyle(rightButton,40);
-        rightButton.setEnabled(false);
-
-        northUpper.add(pause);
-        northUpper.add(center);
-        northUpper.add(rightButton);
-        northUpper.setPreferredSize(new Dimension(WIDTH, 150));
+        JLabel titleLabel = new JLabel(currentStage.getName(), SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 40));
+        titleLabel.setForeground(new Color(255, 215, 0));
+        upperPanel.add(titleLabel, BorderLayout.CENTER);
 
         JPanel marginBottom = new JPanel();
-        marginBottom.setPreferredSize(new Dimension(WIDTH,50));
+        marginBottom.setPreferredSize(new Dimension(WIDTH, 50));
 
-        north.add(northUpper, BorderLayout.CENTER);
-        north.add(marginBottom, BorderLayout.SOUTH);
+        topPanel.add(upperPanel, BorderLayout.CENTER);
+        topPanel.add(marginBottom, BorderLayout.SOUTH);
 
-        north.setPreferredSize(new Dimension(WIDTH,150));
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -106,52 +108,74 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     private JDialog createPauseDialog(ActionEvent e) {
-        JFrame currentFrame=null;
-        Window window = SwingUtilities.getWindowAncestor((Component) e.getSource());
-        if (window instanceof JFrame) {
-            currentFrame = (JFrame) window;
-            System.out.println("Current Frame Title: " + currentFrame.getTitle());
-        }
+        JFrame frame = MainFrame.getInstance();
 
         LeftPanel.pauseClock();
 
-        JDialog pauseDialog = new JDialog(currentFrame, "Paused", true);
-        pauseDialog.setSize(600, 300);
+
+        JDialog pauseDialog = new JDialog(frame, "Paused", true);
+        pauseDialog.setSize(400, 300);
         pauseDialog.setLayout(new BoxLayout(pauseDialog.getContentPane(), BoxLayout.Y_AXIS));
 
+        JPanel upperPanel = new JPanel();
+        upperPanel.setPreferredSize(new Dimension(WIDTH,100));
+        upperPanel.setBackground(new Color(35, 35, 35));
+        upperPanel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createMatteBorder(0, 0, 5, 0, new Color(70, 130, 180)),
+                BorderFactory.createEmptyBorder(10, 20, 10, 20)));
+
+
         JLabel pauseLabel = new JLabel("Paused", JLabel.CENTER);
+        pauseLabel.setFont(new Font(("Arial"), Font.BOLD, 40));
+        pauseLabel.setForeground(new Color(255, 215, 0));
         pauseLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        upperPanel.add(pauseLabel);
+
         JButton resumeButton = new JButton("Resume");
+        Decorator.setButtonStyle(resumeButton,20);
         resumeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton backButton = new JButton("Back");
+        Decorator.setButtonStyle(backButton,20);
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        JButton resetButton = new JButton("Reset");
+        Decorator.setButtonStyle(resetButton,20);
+        resetButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         // Define the action to close the pause dialog
-        resumeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                LeftPanel.resumeClock();
-                pauseDialog.dispose();
-            }
+        resumeButton.addActionListener(e1 -> {
+            LeftPanel.resumeClock();
+            pauseDialog.dispose();
         });
-        backButton.addActionListener(evt -> {
+        backButton.addActionListener(e1 -> {
             StageSelectionPanel s = new StageSelectionPanel();
             JPanel cardPanel = MainFrame.getCardPanel();
             cardPanel.add(s, "select");
             MainFrame.getCardLayout().show(cardPanel,"select");
             pauseDialog.dispose();
         });
+        resetButton.addActionListener(e1->{
+            GamePanel g = new GamePanel(currentStage);
+            LeftPanel.resumeClock();
+            JPanel cardPanel = MainFrame.getCardPanel();
+            cardPanel.add(g, "game");
+            MainFrame.getCardLayout().show(cardPanel,"game");
+            pauseDialog.dispose();
+        });
 
         pauseDialog.add(Box.createVerticalGlue());
-        pauseDialog.add(pauseLabel);
+        pauseDialog.add(upperPanel);
         pauseDialog.add(Box.createRigidArea(new Dimension(0, 20)));
         pauseDialog.add(resumeButton);
-        pauseDialog.add(Box.createVerticalGlue());
+        pauseDialog.add(Box.createRigidArea(new Dimension(0, 20)));
         pauseDialog.add(backButton);
-        pauseDialog.add(Box.createVerticalGlue());
+        pauseDialog.add(Box.createRigidArea(new Dimension(0, 20)));
+        pauseDialog.add(resetButton);
+        pauseDialog.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        pauseDialog.setLocationRelativeTo(currentFrame);
+        pauseDialog.setLocationRelativeTo(frame);
 
         return pauseDialog;
     }

@@ -15,7 +15,7 @@ public class LeftPanel extends JPanel implements ActionListener {
     JButton modButton = new JButton("O");
     JButton hintButton = new JButton();
 
-    static ClockComponent clock = new ClockComponent();
+    static TimerComponent clock = new TimerComponent();
     Font font = new Font("Arial", Font.BOLD, 20);
 
     public void init() {
@@ -24,7 +24,6 @@ public class LeftPanel extends JPanel implements ActionListener {
 
         clock.clearClock();
         clearHint();
-
 
         JPanel bottomPanel = new JPanel(new GridLayout(1, 2));
 
@@ -83,7 +82,7 @@ public class LeftPanel extends JPanel implements ActionListener {
     }
 
     public static String getTime() {
-        return ClockComponent.localTime.toString();
+        return TimerComponent.localTime.toString();
     }
 
     public void setEventHandler(ActionListener actionListener) {

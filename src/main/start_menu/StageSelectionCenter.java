@@ -76,9 +76,9 @@ public class StageSelectionCenter extends JPanel {
         JPanel marginBottom = new JPanel();
         marginBottom.setPreferredSize(new Dimension(WIDTH, 20));
         JPanel marginRight = new JPanel();
-        marginRight.setPreferredSize(new Dimension(10, HEIGHT));
+        marginRight.setPreferredSize(new Dimension(20, HEIGHT));
         JPanel marginLeft = new JPanel();
-        marginLeft.setPreferredSize(new Dimension(10, HEIGHT));
+        marginLeft.setPreferredSize(new Dimension(20, HEIGHT));
 
         tmp.add(marginTop, BorderLayout.NORTH);
         tmp.add(marginBottom, BorderLayout.SOUTH);
