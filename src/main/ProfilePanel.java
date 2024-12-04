@@ -14,12 +14,11 @@ import java.util.ArrayList;
 public class ProfilePanel extends JPanel {
     JButton undoButton;
     JLabel resultLabel;
-    static String currentUser;
     RecordManager recordManager;
 
-    public ProfilePanel(String username, RecordManager recordManager) {
-        currentUser = username;
-        this.recordManager = recordManager;
+    public ProfilePanel() {
+        String currentUser = MainFrame.getCurrentUser();
+        this.recordManager = MainFrame.getRecordManager();
 
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(900, 750));
@@ -40,10 +39,7 @@ public class ProfilePanel extends JPanel {
         undoButton.setFont(new Font("Arial", Font.BOLD, 20));
         undoButton.setFocusPainted(false);
         undoButton.addActionListener(e->{
-            MenuPanel menu = new MenuPanel();
-            JPanel cardPanel = MainFrame.getCardPanel();
-            cardPanel.add(menu, "menu");
-            MainFrame.getCardLayout().show(cardPanel,"menu");
+            MainFrame.showPanel(new MenuPanel(),"menu");
         });
         topPanel.add(undoButton, BorderLayout.WEST);
 

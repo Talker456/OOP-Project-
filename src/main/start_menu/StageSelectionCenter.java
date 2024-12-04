@@ -63,8 +63,7 @@ public class StageSelectionCenter extends JPanel {
             // button action
             buttons[i].addActionListener(e -> {
                 GamePanel gamePanel = new GamePanel(MainFrame.getStageManager().getStage(index));
-                MainFrame.getCardPanel().add(gamePanel, "game");
-                MainFrame.getCardLayout().show(MainFrame.getCardPanel(),"game");
+                MainFrame.showPanel(gamePanel,"game");
 
             });
         }

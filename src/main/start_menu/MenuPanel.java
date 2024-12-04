@@ -45,11 +45,12 @@ public class MenuPanel extends JPanel {
         button1.setForeground(Color.WHITE); // 글씨 색 설정
         button3.setForeground(Color.white);
         button3.addActionListener(e->{
-            CardLayout cardLayout = MainFrame.getCardLayout();
-            JPanel cardPanel = MainFrame.getCardPanel();
-            ProfilePanel p = new ProfilePanel(MainFrame.getCurrentUser(), MainFrame.getRecordManager());
-            cardPanel.add(p, "profile");
-            cardLayout.show(cardPanel,"profile");
+//            CardLayout cardLayout = MainFrame.getCardLayout();
+//            JPanel cardPanel = MainFrame.getCardPanel();
+//            ProfilePanel p = new ProfilePanel();
+//            cardPanel.add(p, "profile");
+//            cardLayout.show(cardPanel,"profile");
+            MainFrame.showPanel(new ProfilePanel(),"profile");
         });
 
         // 버튼 글씨 폰트 설정

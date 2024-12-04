@@ -150,18 +150,13 @@ public class GamePanel extends JPanel implements ActionListener {
             pauseDialog.dispose();
         });
         backButton.addActionListener(e1 -> {
-            StageSelectionPanel s = new StageSelectionPanel();
-            JPanel cardPanel = MainFrame.getCardPanel();
-            cardPanel.add(s, "select");
-            MainFrame.getCardLayout().show(cardPanel,"select");
+            MainFrame.showPanel(new StageSelectionPanel(),"select");
             pauseDialog.dispose();
         });
         resetButton.addActionListener(e1->{
             GamePanel g = new GamePanel(currentStage);
             LeftPanel.resumeClock();
-            JPanel cardPanel = MainFrame.getCardPanel();
-            cardPanel.add(g, "game");
-            MainFrame.getCardLayout().show(cardPanel,"game");
+            MainFrame.showPanel(g,"game");
             pauseDialog.dispose();
         });
 

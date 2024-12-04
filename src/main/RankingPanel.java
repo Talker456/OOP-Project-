@@ -72,10 +72,7 @@ public class RankingPanel extends JPanel {
         undoButton.setFont(new Font("Arial", Font.BOLD, 20));
         undoButton.setFocusPainted(false);
         undoButton.addActionListener(e->{
-            MenuPanel menu = new MenuPanel();
-            JPanel cardPanel = MainFrame.getCardPanel();
-            cardPanel.add(menu, "menu");
-            MainFrame.getCardLayout().show(cardPanel,"menu");
+            MainFrame.showPanel(new MenuPanel(),"menu");
         });
         topPanel.add(undoButton, BorderLayout.WEST);
 

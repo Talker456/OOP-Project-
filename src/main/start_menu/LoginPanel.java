@@ -15,7 +15,7 @@ public class LoginPanel extends JPanel {
 
 
         JLabel titleLabel = new JLabel("NONOGRAMS");
-        titleLabel.setFont(new Font("Dialog", Font.BOLD, 50));
+        titleLabel.setFont(new Font("Dialog", Font.BOLD, 80));
         titleLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
 
         JTextField nicknameField = new JTextField(20);
@@ -37,10 +37,23 @@ public class LoginPanel extends JPanel {
 
 
         startPanel.setLayout(new BoxLayout(startPanel, BoxLayout.Y_AXIS));
-        startPanel.setPreferredSize(new Dimension(WIDTH,850));
+        startPanel.setPreferredSize(new Dimension(WIDTH, 850));
+
+        startPanel.setLayout(new BoxLayout(startPanel, BoxLayout.Y_AXIS));
+
+
+        startPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        startPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
+
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        textLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        nicknameField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+
         startPanel.add(Box.createVerticalGlue());
         startPanel.add(titleLabel);
-        startPanel.add(Box.createRigidArea(new Dimension(0, 15)));
+        startPanel.add(Box.createRigidArea(new Dimension(0, 25)));
         startPanel.add(textLabel);
         startPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         startPanel.add(nicknameField);
@@ -51,20 +64,7 @@ public class LoginPanel extends JPanel {
         startButton.addActionListener(e -> {
             String name = nicknameField.getText();
             MainFrame.setUsername(name);
-            JPanel cardPanel = MainFrame.getCardPanel();
-            CardLayout cardLayout = MainFrame.getCardLayout();
-            JPanel menu = MainFrame.getPanel("menu");
-            if (menu != null) {
-                cardPanel.remove(MainFrame.getPanel("menu"));
-            }
-            MenuPanel mpt = new MenuPanel();
-            cardPanel.add(mpt, "menu");
-            cardLayout.show(cardPanel,"menu");
-
-            // O.G
-//            MenuPanelDemo menuPanelDemo = new MenuPanelDemo();
-//            cardPanel.add(menuPanelDemo, "menu");
-//            cardLayout.show(cardPanel,"menu");
+            MainFrame.showPanel(new MenuPanel(),"menu");
         });
 
         add(startPanel,BorderLayout.CENTER);

@@ -92,12 +92,9 @@ public class MainFrame extends JFrame {
         return s;
     }
 
-    public static JPanel getPanel(String name) {
-        for (Component comp : cardPanel.getComponents()) {
-            if (comp instanceof JPanel && name.equals(((CardLayout) cardPanel.getLayout()).toString())) {
-                return (JPanel) comp;
-            }
-        } return null;
+    public static void showPanel(JPanel panel, String constraint) {
+        cardPanel.add(panel, constraint);
+        cardLayout.show(cardPanel,constraint);
     }
 
     public static MainFrame getInstance() {
