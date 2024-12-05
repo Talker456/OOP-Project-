@@ -1,6 +1,6 @@
 package main.games;
 
-import test.stage.Stage;
+import main.stage.Stage;
 import main.MainFrame;
 import main.StageSelectionPanel;
 

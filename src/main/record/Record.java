@@ -1,34 +1,65 @@
 
 package main.record;
 
-public class Record {
-    private String userId;
-    private int clearTimeInSeconds;
+import java.time.LocalTime;
+import java.util.Scanner;
 
-    public Record(String userId, String clearTime) {
-        this.userId = userId;
-        this.clearTimeInSeconds = parseClearTimeToSeconds(clearTime);
+public class Record{
+    String username;
+    String stageName;
+    String difficulty;
+    String time;
+
+    public Record(){}
+
+    public Record(String username, String stageName,String difficulty, String time) {
+        this.username = username;
+        this.stageName = stageName;
+        this.difficulty = difficulty;
+        this.time = time;
     }
 
-    private int parseClearTimeToSeconds(String clearTime) {
-        String[] parts = clearTime.split(":");
-        int minutes = Integer.parseInt(parts[0]);
-        int seconds = Integer.parseInt(parts[1]);
-        return minutes * 60 + seconds;
+    public void read(Scanner scanner) {
+        this.username = scanner.next();
+        this.stageName = scanner.next();
+        this.difficulty = scanner.next();
+        this.time = scanner.next();
     }
 
-    public String getUserId() {
-        return userId;
+    public void altRead(Scanner scanner, String username) {
+        this.username = username;
+        this.stageName = scanner.next();
+        this.difficulty = scanner.next();
+        this.time = scanner.next();
     }
 
-    public int getClearTimeInSeconds() {
-        return clearTimeInSeconds;
+    public void print() {
+        System.out.println(username+", "+stageName+", "+difficulty+", "+time);
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getStageName() {
+        return stageName;
+    }
+
+    public LocalTime getTimeAsLocalTime() {
+        return LocalTime.parse(time);
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public String getTime() {
+        return time;
     }
 
     @Override
     public String toString() {
-        int minutes = clearTimeInSeconds / 60;
-        int seconds = clearTimeInSeconds % 60;
-        return userId + ": " + String.format("%02d:%02d", minutes, seconds);
+        return username + " " + stageName + " " + difficulty + " " + time;
     }
 }
+

@@ -1,8 +1,8 @@
 package main;
 
 import main.start_menu.LoginPanel;
-import test.RecordManager;
-import test.StageManager;
+import main.RecordManager;
+import main.StageManager;
 
 import javax.swing.*;
 import java.awt.*;

@@ -4,7 +4,6 @@ import main.MainFrame;
 import main.ProfilePanel;
 import main.RankingPanel;
 import main.StageSelectionPanel;
-import test.RealTimeClock;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,78 +14,110 @@ public class MenuPanel extends JPanel {
 
         setLayout(new BorderLayout());
 
-        // 1행 3열 패널
-        JPanel southPanel = new JPanel(new GridLayout(1, 3));
+        JPanel topPanel = new JPanel();
+        topPanel.setLayout(new BorderLayout());
+        topPanel.setBackground(new Color(35, 35, 35));
+        topPanel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createMatteBorder(0, 0, 5, 0, new Color(70, 130, 180)),
+                BorderFactory.createEmptyBorder(10, 20, 10, 20)));
 
-        // 이미지 불러오기
-        ImageIcon southIcon;
-        try {
-            southIcon = new ImageIcon(getClass().getResource("nonowhite.PNG"));
-        } catch (NullPointerException e) {
-            southIcon = new ImageIcon(); // 기본 아이콘
-            System.out.println("이미지를 로드할 수 없습니다.");
-        }
-
-        // 이미지 크기 조정
-        int buttonWidth = 200;
-        int buttonHeight = 50;
-        Image scaledImage = southIcon.getImage().getScaledInstance(buttonWidth, buttonHeight, Image.SCALE_SMOOTH);
-        ImageIcon resizedIcon = new ImageIcon(scaledImage);
-
-        // 버튼 생성
-        JButton button1 = new JButton();
-        button1.setEnabled(false);
-        RealTimeClock clock = new RealTimeClock(button1);
-        clock.startClock(); // 시계 시작
-
-        JButton button2 = new JButton();
-        JButton button3 = new JButton("MY PAGE");
-
-        button1.setForeground(Color.WHITE); // 글씨 색 설정
-        button3.setForeground(Color.white);
-        button3.addActionListener(e->{
-//            CardLayout cardLayout = MainFrame.getCardLayout();
-//            JPanel cardPanel = MainFrame.getCardPanel();
-//            ProfilePanel p = new ProfilePanel();
-//            cardPanel.add(p, "profile");
-//            cardLayout.show(cardPanel,"profile");
-            MainFrame.showPanel(new ProfilePanel(),"profile");
-        });
-
-        // 버튼 글씨 폰트 설정
-        Font font = new Font("Arial", Font.BOLD, 20);
-        button1.setFont(font);
-        button3.setFont(font);
-
-        // 버튼 배경색 설정
-        button1.setBackground(Color.DARK_GRAY);
-        button2.setBackground(Color.DARK_GRAY);
-        button3.setBackground(Color.DARK_GRAY);
-        button2.setOpaque(true); // 불투명하게 설정
-        button2.setIcon(resizedIcon); // 버튼에 아이콘 설정
-        button2.setEnabled(false); // 버튼 비활성화
-
-        // 패널에 버튼 추가
-        southPanel.add(button1);
-        southPanel.add(button2);
-        southPanel.add(button3);
-
-        JPanel centerPanel = new JPanel(new GridLayout(2, 1));
-
-        JButton rankbutton = new JButton();
-        JButton stagebutton = new JButton();
-
-        rankbutton.setBackground(Color.LIGHT_GRAY);
-        rankbutton.addActionListener(e->{
-            RankingPanel rankingPanel = new RankingPanel(MainFrame.getCurrentUser());
+        JButton undoButton = new JButton("Back");
+        undoButton.setPreferredSize(new Dimension(120, 50));
+        undoButton.setBackground(new Color(70, 130, 180));
+        undoButton.setForeground(Color.WHITE);
+        undoButton.setFont(new Font("Arial", Font.BOLD, 20));
+        undoButton.setFocusPainted(false);
+        undoButton.addActionListener(e->{
+            LoginPanel l = new LoginPanel();
             JPanel cardPanel = MainFrame.getCardPanel();
-            cardPanel.add(rankingPanel, "rank");
-            MainFrame.getCardLayout().show(cardPanel,"rank");
+            cardPanel.add(l, "login");
+            MainFrame.getCardLayout().show(cardPanel,"login");
+
         });
+        topPanel.add(undoButton, BorderLayout.WEST);
 
-        stagebutton.setBackground(Color.LIGHT_GRAY);
-        stagebutton.addActionListener(e -> {
+        JLabel titleLabel = new JLabel("MENU", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 40));
+        titleLabel.setForeground(new Color(255, 215, 0));
+        topPanel.add(titleLabel, BorderLayout.CENTER);
 
+        add(topPanel, BorderLayout.NORTH);
+
+
+        // 1행 3열 패널
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new GridLayout(1, 3));
+        bottomPanel.setBackground(new Color(35, 35, 35));
+        bottomPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+
+        JLabel clockLabel = new JLabel();
+        Font font = new Font("Arial", Font.BOLD, 20);
+        clockLabel.setFont(font);
+        clockLabel.setBackground(new Color(35, 35, 35));
+        clockLabel.setForeground(Color.white);
+        RealTimeClock clock = new RealTimeClock(clockLabel);
+        clock.startClock();
+        bottomPanel.add(clockLabel);
+
+
+        JLabel nonogramsLabel = new JLabel("NONOGRAMS", SwingConstants.CENTER);
+        nonogramsLabel.setForeground(Color.WHITE);
+        nonogramsLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        bottomPanel.add(nonogramsLabel);
+
+        JLabel myPageLabel = new JLabel("MENU", SwingConstants.CENTER);
+        myPageLabel.setForeground(new Color(255, 215, 0)); // Golden color for better emphasis
+        myPageLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        bottomPanel.add(myPageLabel);
+
+        add(bottomPanel, BorderLayout.SOUTH);
+//
+        // 공통된 버튼 설정 메서드로 반복 코드 줄이
+
+        BackgroundPanel centerPanel = new BackgroundPanel("characterbackground2.jpg");
+        centerPanel.setLayout(new GridBagLayout()); // GridBagLayout 설정
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        Font bigFont = new Font("Arial", Font.BOLD, 25);
+
+        // 공통 설정
+        gbc.insets = new Insets(0, 50, 0, 50); // 버튼 간격 설정 (좌우 50 픽셀)
+        gbc.gridy = 0; // 같은 행에 배치
+
+        // GO TO STAGE 버튼
+        JButton rankbutton = new JButton("GO TO STAGE");
+        rankbutton.setFont(bigFont);
+        rankbutton.setForeground(Color.white);
+        rankbutton.setBackground(new Color(35, 35, 35));
+        rankbutton.setPreferredSize(new Dimension(200, 220));
+        gbc.gridx = 0; // 첫 번째 열
+        centerPanel.add(rankbutton, gbc);
+
+        // RANKING 버튼
+        JButton stagebutton = new JButton("RANKING");
+        stagebutton.setFont(bigFont);
+        stagebutton.setForeground(Color.white);
+        stagebutton.setBackground(new Color(35, 35, 35));
+        stagebutton.setPreferredSize(new Dimension(200, 220));
+        gbc.gridx = 1; // 두 번째 열
+        centerPanel.add(stagebutton, gbc);
+
+        // MY PAGE 버튼
+        JButton mypagebutton = new JButton("MY PAGE");
+        mypagebutton.setFont(bigFont);
+        mypagebutton.setForeground(Color.white);
+        mypagebutton.setBackground(new Color(35, 35, 35));
+        mypagebutton.setPreferredSize(new Dimension(200, 220));
+        gbc.gridx = 2; // 세 번째 열
+        centerPanel.add(mypagebutton, gbc);
+
+        // 각 버튼에 호버 효과 추가
+        addHoverEffect(rankbutton, new Color(70, 130, 180)); // 원하는 배경색
+        addHoverEffect(stagebutton, new Color(70, 130, 180));
+        addHoverEffect(mypagebutton, new Color(70, 130, 180));
+
+        // 버튼 클릭 리스너 추가
+        rankbutton.addActionListener(e -> {
             System.out.println("stage button hit");
             StageSelectionPanel selectionPanel = new StageSelectionPanel();
             JPanel cardPanel = MainFrame.getCardPanel();
@@ -94,53 +125,49 @@ public class MenuPanel extends JPanel {
             MainFrame.getCardLayout().show(cardPanel, "select");
         });
 
-        // 센터 이미지 불러오기
-        ImageIcon centerIcon;
-        try {
-            centerIcon = new ImageIcon(getClass().getResource("nonobackground.jpg"));
-        } catch (NullPointerException e) {
-            centerIcon = new ImageIcon();
-        }
-        int centerWidth = 700;
-        int centerHeight = 700;
-        Image centerImage = centerIcon.getImage().getScaledInstance(centerWidth, centerHeight, Image.SCALE_SMOOTH);
-        ImageIcon putstageIcon = new ImageIcon(centerImage);
-
-        ImageIcon rankIcon;
-        try {
-            rankIcon = new ImageIcon(getClass().getResource("rankbackground.jpg"));
-        } catch (NullPointerException e) {
-            rankIcon = new ImageIcon();
-        }
-        int rankWidth = 800;
-        int rankHeight = 800;
-        Image rankImage = rankIcon.getImage().getScaledInstance(rankWidth, rankHeight, Image.SCALE_SMOOTH);
-        ImageIcon putrankIcon = new ImageIcon(rankImage);
-
-        // 센터 패널에 버튼추가
-        centerPanel.add(rankbutton);
-        centerPanel.add(stagebutton);
-
-        // 센터 버튼에 아이콘 설정
-        stagebutton.setIcon(putstageIcon);
-        rankbutton.setIcon(putrankIcon);
-
-        // 동쪽 버튼 생성
-        JButton westButton = new JButton("back");
-        westButton.setBackground(Color.DARK_GRAY);
-        westButton.setForeground(Color.WHITE);
-        westButton.setFont(font);
-        westButton.addActionListener(e->{
-            LoginPanel l = new LoginPanel();
+        stagebutton.addActionListener(e -> {
+            System.out.println("rank button hit");
+            RankingPanel rankingPanel = new RankingPanel();
             JPanel cardPanel = MainFrame.getCardPanel();
-            cardPanel.add(l, "login");
-            MainFrame.getCardLayout().show(cardPanel,"login");
-
+            cardPanel.add(rankingPanel, "rank");
+            MainFrame.getCardLayout().show(cardPanel, "rank");
         });
 
-        // 패널에 추가
-        add(southPanel, BorderLayout.SOUTH);
+        mypagebutton.addActionListener(e -> {
+            CardLayout cardLayout = MainFrame.getCardLayout();
+            JPanel cardPanel = MainFrame.getCardPanel();
+            ProfilePanel p = new ProfilePanel();
+            cardPanel.add(p, "profile");
+            cardLayout.show(cardPanel, "profile");
+        });
+
         add(centerPanel, BorderLayout.CENTER);
-        add(westButton, BorderLayout.WEST);
+    }
+    private void addHoverEffect(JButton button, Color hoverColor) {
+//        button.setOpaque(false); // 기본 상태를 투명하게 설정
+//        button.setContentAreaFilled(false);
+        button.setBorderPainted(true); // 테두리 활성화
+        button.setFocusPainted(false);
+        button.setBorder(BorderFactory.createLineBorder(new Color(35, 35, 35), 5)); // 기본 테두리 설정
+
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                button.setOpaque(true); // 마우스가 올라오면 배경 활성화
+                button.setBackground(hoverColor); // 원하는 배경색
+                button.setContentAreaFilled(true);
+                button.setForeground(new Color(241, 221, 111));
+                button.setBorder(BorderFactory.createLineBorder(new Color(241, 221, 111), 5)); // 마우스 오버 시 테두리 색상 변경
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e) {
+//                button.setOpaque(false); // 마우스가 나가면 다시 투명하게
+//                button.setContentAreaFilled(false);
+                button.setBackground(new Color(35, 35, 35));
+                button.setForeground(Color.white);
+                button.setBorder(BorderFactory.createLineBorder(new Color(35, 35, 35), 5)); // 기본 테두리로 돌아감
+            }
+        });
     }
 }

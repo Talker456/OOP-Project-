@@ -1,4 +1,4 @@
-package test.stage;
+package main.stage;
 
 import java.util.Scanner;
 
@@ -23,12 +23,5 @@ public class Stage {
 
     public String getName() {
         return name;
-    }
-
-    public void print() {
-        System.out.println(name+", "+difficulty);
-        for (String string : image) {
-            System.out.println(string);
-        }
     }
 }

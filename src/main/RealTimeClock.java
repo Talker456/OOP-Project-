@@ -1,4 +1,4 @@
-package test;
+package main;
 
 import javax.swing.*;
 import java.text.SimpleDateFormat;

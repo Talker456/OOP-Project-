@@ -1,15 +1,14 @@
-package test.stage;
+package main.stage;
 
 import java.util.Scanner;
 
-public class EasyStage extends Stage{
-
+public class HardStage extends Stage {
     @Override
     public void read(Scanner scanner) {
         super.read(scanner);
-        image = new String[5];
-        difficulty = "Easy";
-        for (int i = 0; i < 5; i++) {
+        difficulty = "Hard";
+        image = new String[15];
+        for (int i = 0; i < 15; i++) {
             image[i] = scanner.next();
         }
     }

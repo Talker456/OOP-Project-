@@ -1,8 +1,8 @@
-package test.stage;
+package main.stage;
 
 import java.util.Scanner;
 
-public class NormalStage extends Stage{
+public class NormalStage extends Stage {
     @Override
     public void read(Scanner scanner) {
         super.read(scanner);
@@ -12,5 +12,4 @@ public class NormalStage extends Stage{
             image[i] = scanner.next();
         }
     }
-
 }

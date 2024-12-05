@@ -1,4 +1,6 @@
-package test;
+package main;
+
+import main.record.Record;
 
 import java.util.ArrayList;
 import java.util.Comparator;

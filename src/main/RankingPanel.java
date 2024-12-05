@@ -2,7 +2,7 @@ package main;
 
 import main.start_menu.MenuPanel;
 import main.start_menu.RealTimeClock;
-import test.Record;
+import main.record.Record;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class RankingPanel extends JPanel {
 
 
-    public RankingPanel(String username) {
+    public RankingPanel() {
         setLayout(new BorderLayout());
 
         JPanel mainPanel = new JPanel();
@@ -87,7 +87,7 @@ public class RankingPanel extends JPanel {
     private void setMainPanel(JPanel mainPanel) {
         mainPanel.setLayout(new GridLayout(3, 4, 15, 15));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        mainPanel.setBackground(Color.LIGHT_GRAY);
+        mainPanel.setBackground(Color.white);
 
 
         for (int i = 0; i < MainFrame.getStageManager().size(); i++) {

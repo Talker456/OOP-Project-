@@ -1,14 +1,11 @@
 package main;
 
 import main.start_menu.MenuPanel;
-import test.start.MenuFrame;
-import test.RecordManager;
-import test.Record;
+import main.RecordManager;
+import main.record.Record;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ProfilePanel extends JPanel {
@@ -93,14 +90,14 @@ public class ProfilePanel extends JPanel {
         centerPanel.add(resultLabel);
         centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        JButton viewAchievementsButton = new JButton("Achievements");
-        viewAchievementsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        viewAchievementsButton.setFont(new Font("Arial", Font.BOLD, 20));
-        viewAchievementsButton.setBackground(new Color(70, 130, 180));
-        viewAchievementsButton.setForeground(Color.WHITE);
-        viewAchievementsButton.setFocusPainted(false);
-        viewAchievementsButton.addActionListener(e -> JOptionPane.showMessageDialog(this, "기능 미구현", "Achievements", JOptionPane.INFORMATION_MESSAGE));
-        centerPanel.add(viewAchievementsButton);
+//        JButton viewAchievementsButton = new JButton("Achievements");
+//        viewAchievementsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+//        viewAchievementsButton.setFont(new Font("Arial", Font.BOLD, 20));
+//        viewAchievementsButton.setBackground(new Color(70, 130, 180));
+//        viewAchievementsButton.setForeground(Color.WHITE);
+//        viewAchievementsButton.setFocusPainted(false);
+//        viewAchievementsButton.addActionListener(e -> JOptionPane.showMessageDialog(this, "기능 미구현", "Achievements", JOptionPane.INFORMATION_MESSAGE));
+//        centerPanel.add(viewAchievementsButton);
 
         add(centerPanel, BorderLayout.CENTER);
 

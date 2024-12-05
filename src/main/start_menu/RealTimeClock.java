@@ -6,7 +6,6 @@ import java.util.Date;
 
 public class RealTimeClock {
     private JLabel timeLabel;
-    Timer timer;
 
     public RealTimeClock(JLabel label) {
         this.timeLabel = label;

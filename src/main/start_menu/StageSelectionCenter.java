@@ -1,7 +1,7 @@
 package main.start_menu;
 
 
-import test.Record;
+import main.record.Record;
 import main.MainFrame;
 import main.games.GamePanel;
 

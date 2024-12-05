@@ -1,10 +1,10 @@
-package test;
+package main;
 
 
-import test.stage.EasyStage;
-import test.stage.HardStage;
-import test.stage.NormalStage;
-import test.stage.Stage;
+import main.stage.EasyStage;
+import main.stage.HardStage;
+import main.stage.NormalStage;
+import main.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.Scanner;

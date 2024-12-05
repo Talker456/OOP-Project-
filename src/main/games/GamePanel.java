@@ -2,9 +2,8 @@ package main.games;
 
 import main.Decorator;
 import main.StageSelectionPanel;
-import main.start_menu.MenuPanel;
-import test.Record;
-import test.stage.Stage;
+import main.record.Record;
+import main.stage.Stage;
 import main.MainFrame;
 
 import javax.swing.*;
@@ -111,7 +110,6 @@ public class GamePanel extends JPanel implements ActionListener {
         JFrame frame = MainFrame.getInstance();
 
         LeftPanel.pauseClock();
-
 
         JDialog pauseDialog = new JDialog(frame, "Paused", true);
         pauseDialog.setSize(400, 300);
