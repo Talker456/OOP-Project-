@@ -94,6 +94,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     public static void terminate(){
         System.out.println("terminated");
+
         String timeSpent = LeftPanel.getTime();
         String difficulty = currentStage.getDifficulty();
         String stageName = currentStage.getName();
@@ -103,6 +104,8 @@ public class GamePanel extends JPanel implements ActionListener {
 
         MainFrame.writeRecord(record.toString());
         MainFrame.getRecordManager().addRecord(record);
+
+        LeftPanel.clock.clearClock();
 
     }
 
@@ -149,6 +152,7 @@ public class GamePanel extends JPanel implements ActionListener {
         });
         backButton.addActionListener(e1 -> {
             MainFrame.showPanel(new StageSelectionPanel(),"select");
+            LeftPanel.clock.clearClock();
             pauseDialog.dispose();
         });
         resetButton.addActionListener(e1->{

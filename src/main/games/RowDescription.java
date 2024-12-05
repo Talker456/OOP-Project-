@@ -76,7 +76,7 @@ public class RowDescription extends JPanel{
                 fontSize = 25.0f;
                 break;
             case 15:
-                fontSize=15.0f;
+                fontSize=18.0f;
                 break;
             default:
                 System.out.println("Wrong image length");

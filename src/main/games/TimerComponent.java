@@ -11,26 +11,31 @@ public class TimerComponent extends JLabel {
 
 
     static LocalTime localTime;
-    Timer t;
+    static Timer t;
 
     TimerComponent() {
         super("", SwingConstants.CENTER);
+        t=null;
         localTime = LocalTime.of(0, 0, 0);
-        t = new Timer(1000, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                setText(getTimeString());
-            }
-        });
         setFont(new Font("Sans Serif", Font.PLAIN, 24));
-        t.start();
+
+
+            t = new Timer(1000, new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    setText(getTimeString());
+                }
+            });
+            t.start();
     }
 
     public  void clearClock() {
+        t.stop();
         localTime = LocalTime.of(0, 0, 0);
     }
 
     static String getTimeString() {
         localTime = localTime.plusSeconds(1);
+        System.out.println(localTime.toString());
         return localTime.toString();
     }
 
@@ -44,6 +49,6 @@ public class TimerComponent extends JLabel {
     }
 
     public void resume() {
-        t.start();
+        t.restart();
     }
 }

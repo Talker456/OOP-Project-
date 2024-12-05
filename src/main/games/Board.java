@@ -143,13 +143,6 @@ public class Board extends JPanel implements ActionListener {
     public void terminate() {
         GamePanel.terminate();
 
-        //get current frame for showing dialog
-        JFrame currentFrame=null;
-        Window window = SwingUtilities.getWindowAncestor(cellPanel[0][0]);
-        if (window instanceof JFrame) {
-            currentFrame = (JFrame) window;
-            System.out.println("Current Frame Title: " + currentFrame.getTitle());
-        }
 
         JLabel label = new JLabel(currentStage.getName()+" CLEAR!");
         label.setFont(font);
@@ -161,9 +154,7 @@ public class Board extends JPanel implements ActionListener {
         dialog.setLocation(350, 300);
         dialog.setVisible(true);
 
-        StageSelectionPanel stageSelectionPanel = new StageSelectionPanel();
-        MainFrame.getCardPanel().add(stageSelectionPanel, "select");
-        MainFrame.getCardLayout().show(MainFrame.getCardPanel(),"select");
+        MainFrame.showPanel(new StageSelectionPanel(),"select");
 
     }
 

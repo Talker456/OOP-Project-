@@ -15,14 +15,14 @@ public class LeftPanel extends JPanel implements ActionListener {
     JButton modButton = new JButton("O");
     JButton hintButton = new JButton();
 
-    static TimerComponent clock = new TimerComponent();
+    static TimerComponent clock;
     Font font = new Font("Arial", Font.BOLD, 20);
 
     public void init() {
         setLayout(new GridLayout(4, 1));
         this.setPreferredSize(new Dimension(200, HEIGHT));
 
-        clock.clearClock();
+        clock = new TimerComponent();
         clearHint();
 
         JPanel bottomPanel = new JPanel(new GridLayout(1, 2));
@@ -117,5 +117,9 @@ public class LeftPanel extends JPanel implements ActionListener {
 
     public static void resumeClock() {
         clock.resume();
+    }
+
+    public static void clearClock() {
+        clock.clearClock();
     }
 }
