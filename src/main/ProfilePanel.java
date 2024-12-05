@@ -90,15 +90,6 @@ public class ProfilePanel extends JPanel {
         centerPanel.add(resultLabel);
         centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-//        JButton viewAchievementsButton = new JButton("Achievements");
-//        viewAchievementsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-//        viewAchievementsButton.setFont(new Font("Arial", Font.BOLD, 20));
-//        viewAchievementsButton.setBackground(new Color(70, 130, 180));
-//        viewAchievementsButton.setForeground(Color.WHITE);
-//        viewAchievementsButton.setFocusPainted(false);
-//        viewAchievementsButton.addActionListener(e -> JOptionPane.showMessageDialog(this, "기능 미구현", "Achievements", JOptionPane.INFORMATION_MESSAGE));
-//        centerPanel.add(viewAchievementsButton);
-
         add(centerPanel, BorderLayout.CENTER);
 
         // Bottom panel for navigation

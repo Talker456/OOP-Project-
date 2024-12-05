@@ -8,8 +8,6 @@ import java.awt.event.ActionListener;
 
 public class LeftPanel extends JPanel implements ActionListener {
 
-    //<html><p style='font-size:15px'>O</p></html>
-    //html><p style='font-size:15px;'>Hint<br>3/3</p></html>
     static int hintLeft = 3;
 
     JButton modButton = new JButton("O");
@@ -45,10 +43,6 @@ public class LeftPanel extends JPanel implements ActionListener {
 
         bottomPanel.add(modButtonPanel);
         bottomPanel.add(hintButtonPanel);
-
-//        this.add(clock, BorderLayout.CENTER);
-//        this.add(userLabel, BorderLayout.CENTER);
-//        this.add(bottomPanel, BorderLayout.LINE_END);
 
         add(clock);
         add(hintButtonPanel);
@@ -119,7 +113,4 @@ public class LeftPanel extends JPanel implements ActionListener {
         clock.resume();
     }
 
-    public static void clearClock() {
-        clock.clearClock();
-    }
 }
